@@ -1,0 +1,38 @@
+/* Write your global styles here, in SCSS syntax. Variables and mixins from the src/variables.scss file are available here without importing */
+html,
+body {
+  padding: 0;
+  margin: 0;
+  font-family: Lato, sans-serif;
+  width: 100%;
+  // background-color: variables.$color-sinfronteras1;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+.header {
+  margin: 0;
+  padding-top: 2rem;
+  color: #505962;
+  text-align: center;
+  font-size: 1.7rem;
+}
+
+.header-underline {
+  width: 4rem;
+  height: 5px;
+  background-color: $color-sinfronteras;
+  margin: 1rem auto 0rem auto;
+}
+
+.center {
+  text-align: center;
+  margin: auto auto;
+}
