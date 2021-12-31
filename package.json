@@ -33,6 +33,7 @@
 	"dependencies": {
 		"d3-interpolate": "^3.0.1",
 		"sharp": "^0.29.3",
-		"svelte-icons": "^2.1.0"
+		"svelte-icons": "^2.1.0",
+		"svelte-youtube": "^0.0.2"
 	}
 }

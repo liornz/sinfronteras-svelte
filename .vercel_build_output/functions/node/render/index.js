@@ -34,14 +34,14 @@ __export(multipart_parser_exports, {
   toFormData: () => toFormData
 });
 function _fileName(headerValue) {
-  const m2 = headerValue.match(/\bfilename=("(.*?)"|([^()<>@,;:\\"/[\]?={}\s\t]+))($|;\s)/i);
-  if (!m2) {
+  const m3 = headerValue.match(/\bfilename=("(.*?)"|([^()<>@,;:\\"/[\]?={}\s\t]+))($|;\s)/i);
+  if (!m3) {
     return;
   }
-  const match = m2[2] || m2[3] || "";
+  const match = m3[2] || m3[3] || "";
   let filename = match.slice(match.lastIndexOf("\\") + 1);
   filename = filename.replace(/%22/g, '"');
-  filename = filename.replace(/&#(\d{4});/g, (m3, code) => {
+  filename = filename.replace(/&#(\d{4});/g, (m4, code) => {
     return String.fromCharCode(code);
   });
   return filename;
@@ -50,11 +50,11 @@ async function toFormData(Body2, ct) {
   if (!/multipart/i.test(ct)) {
     throw new TypeError("Failed to fetch");
   }
-  const m2 = ct.match(/boundary=(?:"([^"]+)"|([^;]+))/i);
-  if (!m2) {
+  const m3 = ct.match(/boundary=(?:"([^"]+)"|([^;]+))/i);
+  if (!m3) {
     throw new TypeError("no or bad content-type header, no multipart boundary");
   }
-  const parser = new MultipartParser(m2[1] || m2[2]);
+  const parser = new MultipartParser(m3[1] || m3[2]);
   let headerField;
   let headerValue;
   let entryValue;
@@ -99,9 +99,9 @@ async function toFormData(Body2, ct) {
     headerValue += decoder.decode();
     headerField = headerField.toLowerCase();
     if (headerField === "content-disposition") {
-      const m3 = headerValue.match(/\bname=("([^"]*)"|([^()<>@,;:\\"/[\]?={}\s\t]+))/i);
-      if (m3) {
-        entryName = m3[2] || m3[3] || "";
+      const m4 = headerValue.match(/\bname=("([^"]*)"|([^()<>@,;:\\"/[\]?={}\s\t]+))/i);
+      if (m4) {
+        entryName = m4[2] || m4[3] || "";
       }
       filename = _fileName(headerValue);
       if (filename) {
@@ -716,13 +716,13 @@ async function fetch(url, options_) {
       response.body.destroy(error2);
     });
     if (process.version < "v14") {
-      request_.on("socket", (s3) => {
+      request_.on("socket", (s4) => {
         let endedWithEventsCount;
-        s3.prependListener("end", () => {
-          endedWithEventsCount = s3._eventsCount;
+        s4.prependListener("end", () => {
+          endedWithEventsCount = s4._eventsCount;
         });
-        s3.prependListener("close", (hadError) => {
-          if (response && endedWithEventsCount < s3._eventsCount && !hadError) {
+        s4.prependListener("close", (hadError) => {
+          if (response && endedWithEventsCount < s4._eventsCount && !hadError) {
             const error2 = new Error("Premature close");
             error2.code = "ERR_STREAM_PREMATURE_CLOSE";
             response.body.emit("error", error2);
@@ -1016,12 +1016,12 @@ var init_install_fetch = __esm({
           }
           forEach(callback) {
             let i2 = this._cursor;
-            let node = this._front;
-            let elements = node._elements;
-            while (i2 !== elements.length || node._next !== void 0) {
+            let node2 = this._front;
+            let elements = node2._elements;
+            while (i2 !== elements.length || node2._next !== void 0) {
               if (i2 === elements.length) {
-                node = node._next;
-                elements = node._elements;
+                node2 = node2._next;
+                elements = node2._elements;
                 i2 = 0;
                 if (elements.length === 0) {
                   break;
@@ -1409,8 +1409,8 @@ var init_install_fetch = __esm({
         function CreateArrayFromList(elements) {
           return elements.slice();
         }
-        function CopyDataBlockBytes(dest, destOffset, src, srcOffset, n) {
-          new Uint8Array(dest).set(new Uint8Array(src, srcOffset, n), destOffset);
+        function CopyDataBlockBytes(dest, destOffset, src2, srcOffset, n) {
+          new Uint8Array(dest).set(new Uint8Array(src2, srcOffset, n), destOffset);
         }
         function TransferArrayBuffer(O) {
           return O;
@@ -3832,10 +3832,10 @@ var init_install_fetch = __esm({
           const readable = pair === null || pair === void 0 ? void 0 : pair.readable;
           assertRequiredField(readable, "readable", "ReadableWritablePair");
           assertReadableStream(readable, `${context} has member 'readable' that`);
-          const writable2 = pair === null || pair === void 0 ? void 0 : pair.writable;
-          assertRequiredField(writable2, "writable", "ReadableWritablePair");
-          assertWritableStream(writable2, `${context} has member 'writable' that`);
-          return { readable, writable: writable2 };
+          const writable3 = pair === null || pair === void 0 ? void 0 : pair.writable;
+          assertRequiredField(writable3, "writable", "ReadableWritablePair");
+          assertWritableStream(writable3, `${context} has member 'writable' that`);
+          return { readable, writable: writable3 };
         }
         class ReadableStream2 {
           constructor(rawUnderlyingSource = {}, rawStrategy = {}) {
@@ -4413,10 +4413,10 @@ var init_install_fetch = __esm({
           if (stream._backpressure) {
             const backpressureChangePromise = stream._backpressureChangePromise;
             return transformPromiseWith(backpressureChangePromise, () => {
-              const writable2 = stream._writable;
-              const state = writable2._state;
+              const writable3 = stream._writable;
+              const state = writable3._state;
               if (state === "erroring") {
-                throw writable2._storedError;
+                throw writable3._storedError;
               }
               return TransformStreamDefaultControllerPerformTransform(controller, chunk);
             });
@@ -4679,7 +4679,7 @@ var init_install_fetch = __esm({
         return this.entries();
       }
       static [h](o) {
-        return o && typeof o === "object" && o[t] === "FormData" && !m.some((m2) => typeof o[m2] != "function");
+        return o && typeof o === "object" && o[t] === "FormData" && !m.some((m3) => typeof o[m3] != "function");
       }
       append(...a) {
         x("append", arguments, 2);
@@ -4712,15 +4712,15 @@ var init_install_fetch = __esm({
       }
       forEach(a, b) {
         x("forEach", arguments, 1);
-        for (var [c, d2] of this)
-          a.call(b, d2, c, this);
+        for (var [c, d3] of this)
+          a.call(b, d3, c, this);
       }
       set(...a) {
         x("set", arguments, 2);
         var b = [], c = true;
         a = f2(...a);
-        this.#d.forEach((d2) => {
-          d2[0] === a[0] ? c && (c = !b.push(a)) : b.push(d2);
+        this.#d.forEach((d3) => {
+          d3[0] === a[0] ? c && (c = !b.push(a)) : b.push(d3);
         });
         c && b.push(a);
         this.#d = b;
@@ -5446,8 +5446,8 @@ function error(body) {
     headers: {}
   };
 }
-function is_string(s3) {
-  return typeof s3 === "string" || s3 instanceof String;
+function is_string(s4) {
+  return typeof s4 === "string" || s4 instanceof String;
 }
 function is_content_type_textual(content_type) {
   if (!content_type)
@@ -5783,7 +5783,7 @@ async function render_response({
   error: error2,
   page: page2
 }) {
-  const css8 = new Set(options2.entry.css);
+  const css9 = new Set(options2.entry.css);
   const js = new Set(options2.entry.js);
   const styles = new Set();
   const serialized_data = [];
@@ -5794,13 +5794,13 @@ async function render_response({
     error2.stack = options2.get_stack(error2);
   }
   if (page_config.ssr) {
-    branch.forEach(({ node, loaded, fetched, uses_credentials }) => {
-      if (node.css)
-        node.css.forEach((url) => css8.add(url));
-      if (node.js)
-        node.js.forEach((url) => js.add(url));
-      if (node.styles)
-        node.styles.forEach((content) => styles.add(content));
+    branch.forEach(({ node: node2, loaded, fetched, uses_credentials }) => {
+      if (node2.css)
+        node2.css.forEach((url) => css9.add(url));
+      if (node2.js)
+        node2.js.forEach((url) => js.add(url));
+      if (node2.styles)
+        node2.styles.forEach((content) => styles.add(content));
       if (fetched && page_config.hydrate)
         serialized_data.push(...fetched);
       if (uses_credentials)
@@ -5815,7 +5815,7 @@ async function render_response({
         session
       },
       page: page2,
-      components: branch.map(({ node }) => node.module.default)
+      components: branch.map(({ node: node2 }) => node2.module.default)
     };
     for (let i2 = 0; i2 < branch.length; i2 += 1) {
       props[`props_${i2}`] = await branch[i2].loaded.props;
@@ -5839,7 +5839,7 @@ async function render_response({
     js.clear();
   const links = options2.amp ? styles.size > 0 || rendered.css.code.length > 0 ? `<style amp-custom>${Array.from(styles).concat(rendered.css.code).join("\n")}</style>` : "" : [
     ...Array.from(js).map((dep) => `<link rel="modulepreload" href="${dep}">`),
-    ...Array.from(css8).map((dep) => `<link rel="stylesheet" href="${dep}">`)
+    ...Array.from(css9).map((dep) => `<link rel="stylesheet" href="${dep}">`)
   ].join("\n		");
   let init2 = "";
   if (options2.amp) {
@@ -5865,7 +5865,7 @@ async function render_response({
 					status: ${status},
 					error: ${serialize_error(error2)},
 					nodes: [
-						${(branch || []).map(({ node }) => `import(${s$1(node.entry)})`).join(",\n						")}
+						${(branch || []).map(({ node: node2 }) => `import(${s$1(node2.entry)})`).join(",\n						")}
 					],
 					page: {
 						host: ${page2 && page2.host ? s$1(page2.host) : "location.host"}, // TODO this is redundant
@@ -5992,7 +5992,7 @@ async function load_node({
   state,
   route,
   page: page2,
-  node,
+  node: node2,
   $session,
   stuff,
   prerender_enabled,
@@ -6001,7 +6001,7 @@ async function load_node({
   status,
   error: error2
 }) {
-  const { module: module2 } = node;
+  const { module: module2 } = node2;
   let uses_credentials = false;
   const fetched = [];
   let set_cookie_headers = [];
@@ -6046,7 +6046,7 @@ async function load_node({
         const prefix = options2.paths.assets || options2.paths.base;
         const filename = (resolved.startsWith(prefix) ? resolved.slice(prefix.length) : resolved).slice(1);
         const filename_html = `${filename}/index.html`;
-        const asset = options2.manifest.assets.find((d2) => d2.file === filename || d2.file === filename_html);
+        const asset = options2.manifest.assets.find((d3) => d3.file === filename || d3.file === filename_html);
         if (asset) {
           response = options2.read ? new Response(options2.read(asset.file), {
             headers: asset.type ? { "content-type": asset.type } : {}
@@ -6153,10 +6153,10 @@ async function load_node({
   if (!loaded && is_leaf && !is_error)
     return;
   if (!loaded) {
-    throw new Error(`${node.entry} - load must return a value except for page fall through`);
+    throw new Error(`${node2.entry} - load must return a value except for page fall through`);
   }
   return {
-    node,
+    node: node2,
     loaded: normalize(loaded),
     stuff: loaded.stuff || stuff,
     fetched,
@@ -6228,8 +6228,8 @@ async function respond_with_error({ request, options: options2, state, $session,
     };
   }
 }
-function is_prerender_enabled(options2, node, state) {
-  return options2.prerender && (!!node.module.prerender || !!state.prerender && state.prerender.all);
+function is_prerender_enabled(options2, node2, state) {
+  return options2.prerender && (!!node2.module.prerender || !!state.prerender && state.prerender.all);
 }
 async function respond$1(opts) {
   const { request, options: options2, state, $session, route } = opts;
@@ -6264,15 +6264,15 @@ async function respond$1(opts) {
     if (page_config.ssr) {
       let stuff = {};
       for (let i2 = 0; i2 < nodes.length; i2 += 1) {
-        const node = nodes[i2];
+        const node2 = nodes[i2];
         let loaded;
-        if (node) {
+        if (node2) {
           try {
             loaded = await load_node({
               ...opts,
-              node,
+              node: node2,
               stuff,
-              prerender_enabled: is_prerender_enabled(options2, node, state),
+              prerender_enabled: is_prerender_enabled(options2, node2, state),
               is_leaf: i2 === nodes.length - 1,
               is_error: false
             });
@@ -6757,9 +6757,9 @@ var require_is = __commonJS({
 var require_debug = __commonJS({
   "node_modules/semver/internal/debug.js"(exports, module2) {
     init_shims();
-    var debug = typeof process === "object" && process.env && process.env.NODE_DEBUG && /\bsemver\b/i.test(process.env.NODE_DEBUG) ? (...args) => console.error("SEMVER", ...args) : () => {
+    var debug2 = typeof process === "object" && process.env && process.env.NODE_DEBUG && /\bsemver\b/i.test(process.env.NODE_DEBUG) ? (...args) => console.error("SEMVER", ...args) : () => {
     };
-    module2.exports = debug;
+    module2.exports = debug2;
   }
 });
 
@@ -6785,59 +6785,59 @@ var require_re = __commonJS({
   "node_modules/semver/internal/re.js"(exports, module2) {
     init_shims();
     var { MAX_SAFE_COMPONENT_LENGTH } = require_constants();
-    var debug = require_debug();
+    var debug2 = require_debug();
     exports = module2.exports = {};
     var re = exports.re = [];
-    var src = exports.src = [];
+    var src2 = exports.src = [];
     var t2 = exports.t = {};
     var R = 0;
     var createToken = (name, value, isGlobal) => {
       const index = R++;
-      debug(index, value);
+      debug2(index, value);
       t2[name] = index;
-      src[index] = value;
+      src2[index] = value;
       re[index] = new RegExp(value, isGlobal ? "g" : void 0);
     };
     createToken("NUMERICIDENTIFIER", "0|[1-9]\\d*");
     createToken("NUMERICIDENTIFIERLOOSE", "[0-9]+");
     createToken("NONNUMERICIDENTIFIER", "\\d*[a-zA-Z-][a-zA-Z0-9-]*");
-    createToken("MAINVERSION", `(${src[t2.NUMERICIDENTIFIER]})\\.(${src[t2.NUMERICIDENTIFIER]})\\.(${src[t2.NUMERICIDENTIFIER]})`);
-    createToken("MAINVERSIONLOOSE", `(${src[t2.NUMERICIDENTIFIERLOOSE]})\\.(${src[t2.NUMERICIDENTIFIERLOOSE]})\\.(${src[t2.NUMERICIDENTIFIERLOOSE]})`);
-    createToken("PRERELEASEIDENTIFIER", `(?:${src[t2.NUMERICIDENTIFIER]}|${src[t2.NONNUMERICIDENTIFIER]})`);
-    createToken("PRERELEASEIDENTIFIERLOOSE", `(?:${src[t2.NUMERICIDENTIFIERLOOSE]}|${src[t2.NONNUMERICIDENTIFIER]})`);
-    createToken("PRERELEASE", `(?:-(${src[t2.PRERELEASEIDENTIFIER]}(?:\\.${src[t2.PRERELEASEIDENTIFIER]})*))`);
-    createToken("PRERELEASELOOSE", `(?:-?(${src[t2.PRERELEASEIDENTIFIERLOOSE]}(?:\\.${src[t2.PRERELEASEIDENTIFIERLOOSE]})*))`);
+    createToken("MAINVERSION", `(${src2[t2.NUMERICIDENTIFIER]})\\.(${src2[t2.NUMERICIDENTIFIER]})\\.(${src2[t2.NUMERICIDENTIFIER]})`);
+    createToken("MAINVERSIONLOOSE", `(${src2[t2.NUMERICIDENTIFIERLOOSE]})\\.(${src2[t2.NUMERICIDENTIFIERLOOSE]})\\.(${src2[t2.NUMERICIDENTIFIERLOOSE]})`);
+    createToken("PRERELEASEIDENTIFIER", `(?:${src2[t2.NUMERICIDENTIFIER]}|${src2[t2.NONNUMERICIDENTIFIER]})`);
+    createToken("PRERELEASEIDENTIFIERLOOSE", `(?:${src2[t2.NUMERICIDENTIFIERLOOSE]}|${src2[t2.NONNUMERICIDENTIFIER]})`);
+    createToken("PRERELEASE", `(?:-(${src2[t2.PRERELEASEIDENTIFIER]}(?:\\.${src2[t2.PRERELEASEIDENTIFIER]})*))`);
+    createToken("PRERELEASELOOSE", `(?:-?(${src2[t2.PRERELEASEIDENTIFIERLOOSE]}(?:\\.${src2[t2.PRERELEASEIDENTIFIERLOOSE]})*))`);
     createToken("BUILDIDENTIFIER", "[0-9A-Za-z-]+");
-    createToken("BUILD", `(?:\\+(${src[t2.BUILDIDENTIFIER]}(?:\\.${src[t2.BUILDIDENTIFIER]})*))`);
-    createToken("FULLPLAIN", `v?${src[t2.MAINVERSION]}${src[t2.PRERELEASE]}?${src[t2.BUILD]}?`);
-    createToken("FULL", `^${src[t2.FULLPLAIN]}$`);
-    createToken("LOOSEPLAIN", `[v=\\s]*${src[t2.MAINVERSIONLOOSE]}${src[t2.PRERELEASELOOSE]}?${src[t2.BUILD]}?`);
-    createToken("LOOSE", `^${src[t2.LOOSEPLAIN]}$`);
+    createToken("BUILD", `(?:\\+(${src2[t2.BUILDIDENTIFIER]}(?:\\.${src2[t2.BUILDIDENTIFIER]})*))`);
+    createToken("FULLPLAIN", `v?${src2[t2.MAINVERSION]}${src2[t2.PRERELEASE]}?${src2[t2.BUILD]}?`);
+    createToken("FULL", `^${src2[t2.FULLPLAIN]}$`);
+    createToken("LOOSEPLAIN", `[v=\\s]*${src2[t2.MAINVERSIONLOOSE]}${src2[t2.PRERELEASELOOSE]}?${src2[t2.BUILD]}?`);
+    createToken("LOOSE", `^${src2[t2.LOOSEPLAIN]}$`);
     createToken("GTLT", "((?:<|>)?=?)");
-    createToken("XRANGEIDENTIFIERLOOSE", `${src[t2.NUMERICIDENTIFIERLOOSE]}|x|X|\\*`);
-    createToken("XRANGEIDENTIFIER", `${src[t2.NUMERICIDENTIFIER]}|x|X|\\*`);
-    createToken("XRANGEPLAIN", `[v=\\s]*(${src[t2.XRANGEIDENTIFIER]})(?:\\.(${src[t2.XRANGEIDENTIFIER]})(?:\\.(${src[t2.XRANGEIDENTIFIER]})(?:${src[t2.PRERELEASE]})?${src[t2.BUILD]}?)?)?`);
-    createToken("XRANGEPLAINLOOSE", `[v=\\s]*(${src[t2.XRANGEIDENTIFIERLOOSE]})(?:\\.(${src[t2.XRANGEIDENTIFIERLOOSE]})(?:\\.(${src[t2.XRANGEIDENTIFIERLOOSE]})(?:${src[t2.PRERELEASELOOSE]})?${src[t2.BUILD]}?)?)?`);
-    createToken("XRANGE", `^${src[t2.GTLT]}\\s*${src[t2.XRANGEPLAIN]}$`);
-    createToken("XRANGELOOSE", `^${src[t2.GTLT]}\\s*${src[t2.XRANGEPLAINLOOSE]}$`);
+    createToken("XRANGEIDENTIFIERLOOSE", `${src2[t2.NUMERICIDENTIFIERLOOSE]}|x|X|\\*`);
+    createToken("XRANGEIDENTIFIER", `${src2[t2.NUMERICIDENTIFIER]}|x|X|\\*`);
+    createToken("XRANGEPLAIN", `[v=\\s]*(${src2[t2.XRANGEIDENTIFIER]})(?:\\.(${src2[t2.XRANGEIDENTIFIER]})(?:\\.(${src2[t2.XRANGEIDENTIFIER]})(?:${src2[t2.PRERELEASE]})?${src2[t2.BUILD]}?)?)?`);
+    createToken("XRANGEPLAINLOOSE", `[v=\\s]*(${src2[t2.XRANGEIDENTIFIERLOOSE]})(?:\\.(${src2[t2.XRANGEIDENTIFIERLOOSE]})(?:\\.(${src2[t2.XRANGEIDENTIFIERLOOSE]})(?:${src2[t2.PRERELEASELOOSE]})?${src2[t2.BUILD]}?)?)?`);
+    createToken("XRANGE", `^${src2[t2.GTLT]}\\s*${src2[t2.XRANGEPLAIN]}$`);
+    createToken("XRANGELOOSE", `^${src2[t2.GTLT]}\\s*${src2[t2.XRANGEPLAINLOOSE]}$`);
     createToken("COERCE", `${"(^|[^\\d])(\\d{1,"}${MAX_SAFE_COMPONENT_LENGTH}})(?:\\.(\\d{1,${MAX_SAFE_COMPONENT_LENGTH}}))?(?:\\.(\\d{1,${MAX_SAFE_COMPONENT_LENGTH}}))?(?:$|[^\\d])`);
-    createToken("COERCERTL", src[t2.COERCE], true);
+    createToken("COERCERTL", src2[t2.COERCE], true);
     createToken("LONETILDE", "(?:~>?)");
-    createToken("TILDETRIM", `(\\s*)${src[t2.LONETILDE]}\\s+`, true);
+    createToken("TILDETRIM", `(\\s*)${src2[t2.LONETILDE]}\\s+`, true);
     exports.tildeTrimReplace = "$1~";
-    createToken("TILDE", `^${src[t2.LONETILDE]}${src[t2.XRANGEPLAIN]}$`);
-    createToken("TILDELOOSE", `^${src[t2.LONETILDE]}${src[t2.XRANGEPLAINLOOSE]}$`);
+    createToken("TILDE", `^${src2[t2.LONETILDE]}${src2[t2.XRANGEPLAIN]}$`);
+    createToken("TILDELOOSE", `^${src2[t2.LONETILDE]}${src2[t2.XRANGEPLAINLOOSE]}$`);
     createToken("LONECARET", "(?:\\^)");
-    createToken("CARETTRIM", `(\\s*)${src[t2.LONECARET]}\\s+`, true);
+    createToken("CARETTRIM", `(\\s*)${src2[t2.LONECARET]}\\s+`, true);
     exports.caretTrimReplace = "$1^";
-    createToken("CARET", `^${src[t2.LONECARET]}${src[t2.XRANGEPLAIN]}$`);
-    createToken("CARETLOOSE", `^${src[t2.LONECARET]}${src[t2.XRANGEPLAINLOOSE]}$`);
-    createToken("COMPARATORLOOSE", `^${src[t2.GTLT]}\\s*(${src[t2.LOOSEPLAIN]})$|^$`);
-    createToken("COMPARATOR", `^${src[t2.GTLT]}\\s*(${src[t2.FULLPLAIN]})$|^$`);
-    createToken("COMPARATORTRIM", `(\\s*)${src[t2.GTLT]}\\s*(${src[t2.LOOSEPLAIN]}|${src[t2.XRANGEPLAIN]})`, true);
+    createToken("CARET", `^${src2[t2.LONECARET]}${src2[t2.XRANGEPLAIN]}$`);
+    createToken("CARETLOOSE", `^${src2[t2.LONECARET]}${src2[t2.XRANGEPLAINLOOSE]}$`);
+    createToken("COMPARATORLOOSE", `^${src2[t2.GTLT]}\\s*(${src2[t2.LOOSEPLAIN]})$|^$`);
+    createToken("COMPARATOR", `^${src2[t2.GTLT]}\\s*(${src2[t2.FULLPLAIN]})$|^$`);
+    createToken("COMPARATORTRIM", `(\\s*)${src2[t2.GTLT]}\\s*(${src2[t2.LOOSEPLAIN]}|${src2[t2.XRANGEPLAIN]})`, true);
     exports.comparatorTrimReplace = "$1$2$3";
-    createToken("HYPHENRANGE", `^\\s*(${src[t2.XRANGEPLAIN]})\\s+-\\s+(${src[t2.XRANGEPLAIN]})\\s*$`);
-    createToken("HYPHENRANGELOOSE", `^\\s*(${src[t2.XRANGEPLAINLOOSE]})\\s+-\\s+(${src[t2.XRANGEPLAINLOOSE]})\\s*$`);
+    createToken("HYPHENRANGE", `^\\s*(${src2[t2.XRANGEPLAIN]})\\s+-\\s+(${src2[t2.XRANGEPLAIN]})\\s*$`);
+    createToken("HYPHENRANGELOOSE", `^\\s*(${src2[t2.XRANGEPLAINLOOSE]})\\s+-\\s+(${src2[t2.XRANGEPLAINLOOSE]})\\s*$`);
     createToken("STAR", "(<|>)?=?\\s*\\*");
     createToken("GTE0", "^\\s*>=\\s*0.0.0\\s*$");
     createToken("GTE0PRE", "^\\s*>=\\s*0.0.0-0\\s*$");
@@ -6883,7 +6883,7 @@ var require_identifiers = __commonJS({
 var require_semver = __commonJS({
   "node_modules/semver/classes/semver.js"(exports, module2) {
     init_shims();
-    var debug = require_debug();
+    var debug2 = require_debug();
     var { MAX_LENGTH, MAX_SAFE_INTEGER } = require_constants();
     var { re, t: t2 } = require_re();
     var parseOptions = require_parse_options();
@@ -6903,18 +6903,18 @@ var require_semver = __commonJS({
         if (version.length > MAX_LENGTH) {
           throw new TypeError(`version is longer than ${MAX_LENGTH} characters`);
         }
-        debug("SemVer", version, options2);
+        debug2("SemVer", version, options2);
         this.options = options2;
         this.loose = !!options2.loose;
         this.includePrerelease = !!options2.includePrerelease;
-        const m2 = version.trim().match(options2.loose ? re[t2.LOOSE] : re[t2.FULL]);
-        if (!m2) {
+        const m3 = version.trim().match(options2.loose ? re[t2.LOOSE] : re[t2.FULL]);
+        if (!m3) {
           throw new TypeError(`Invalid Version: ${version}`);
         }
         this.raw = version;
-        this.major = +m2[1];
-        this.minor = +m2[2];
-        this.patch = +m2[3];
+        this.major = +m3[1];
+        this.minor = +m3[2];
+        this.patch = +m3[3];
         if (this.major > MAX_SAFE_INTEGER || this.major < 0) {
           throw new TypeError("Invalid major version");
         }
@@ -6924,10 +6924,10 @@ var require_semver = __commonJS({
         if (this.patch > MAX_SAFE_INTEGER || this.patch < 0) {
           throw new TypeError("Invalid patch version");
         }
-        if (!m2[4]) {
+        if (!m3[4]) {
           this.prerelease = [];
         } else {
-          this.prerelease = m2[4].split(".").map((id) => {
+          this.prerelease = m3[4].split(".").map((id) => {
             if (/^[0-9]+$/.test(id)) {
               const num = +id;
               if (num >= 0 && num < MAX_SAFE_INTEGER) {
@@ -6937,7 +6937,7 @@ var require_semver = __commonJS({
             return id;
           });
         }
-        this.build = m2[5] ? m2[5].split(".") : [];
+        this.build = m3[5] ? m3[5].split(".") : [];
         this.format();
       }
       format() {
@@ -6951,7 +6951,7 @@ var require_semver = __commonJS({
         return this.version;
       }
       compare(other) {
-        debug("SemVer.compare", this.version, this.options, other);
+        debug2("SemVer.compare", this.version, this.options, other);
         if (!(other instanceof SemVer)) {
           if (typeof other === "string" && other === this.version) {
             return 0;
@@ -6984,7 +6984,7 @@ var require_semver = __commonJS({
         do {
           const a = this.prerelease[i2];
           const b = other.prerelease[i2];
-          debug("prerelease compare", i2, a, b);
+          debug2("prerelease compare", i2, a, b);
           if (a === void 0 && b === void 0) {
             return 0;
           } else if (b === void 0) {
@@ -7006,7 +7006,7 @@ var require_semver = __commonJS({
         do {
           const a = this.build[i2];
           const b = other.build[i2];
-          debug("prerelease compare", i2, a, b);
+          debug2("prerelease compare", i2, a, b);
           if (a === void 0 && b === void 0) {
             return 0;
           } else if (b === void 0) {
@@ -7112,7 +7112,7 @@ var require_parse = __commonJS({
     var { re, t: t2 } = require_re();
     var SemVer = require_semver();
     var parseOptions = require_parse_options();
-    var parse = (version, options2) => {
+    var parse2 = (version, options2) => {
       options2 = parseOptions(options2);
       if (version instanceof SemVer) {
         return version;
@@ -7133,7 +7133,7 @@ var require_parse = __commonJS({
         return null;
       }
     };
-    module2.exports = parse;
+    module2.exports = parse2;
   }
 });
 
@@ -7142,7 +7142,7 @@ var require_coerce = __commonJS({
   "node_modules/semver/functions/coerce.js"(exports, module2) {
     init_shims();
     var SemVer = require_semver();
-    var parse = require_parse();
+    var parse2 = require_parse();
     var { re, t: t2 } = require_re();
     var coerce = (version, options2) => {
       if (version instanceof SemVer) {
@@ -7170,7 +7170,7 @@ var require_coerce = __commonJS({
       }
       if (match === null)
         return null;
-      return parse(`${match[2]}.${match[3] || "0"}.${match[4] || "0"}`, options2);
+      return parse2(`${match[2]}.${match[3] || "0"}.${match[4] || "0"}`, options2);
     };
     module2.exports = coerce;
   }
@@ -8124,11 +8124,11 @@ var require_color_string = __commonJS({
       var match = string.match(hsl);
       if (match) {
         var alpha = parseFloat(match[4]);
-        var h2 = (parseFloat(match[1]) % 360 + 360) % 360;
-        var s3 = clamp(parseFloat(match[2]), 0, 100);
+        var h3 = (parseFloat(match[1]) % 360 + 360) % 360;
+        var s4 = clamp(parseFloat(match[2]), 0, 100);
         var l = clamp(parseFloat(match[3]), 0, 100);
         var a = clamp(isNaN(alpha) ? 1 : alpha, 0, 1);
-        return [h2, s3, l, a];
+        return [h3, s4, l, a];
       }
       return null;
     };
@@ -8140,11 +8140,11 @@ var require_color_string = __commonJS({
       var match = string.match(hwb);
       if (match) {
         var alpha = parseFloat(match[4]);
-        var h2 = (parseFloat(match[1]) % 360 + 360) % 360;
+        var h3 = (parseFloat(match[1]) % 360 + 360) % 360;
         var w = clamp(parseFloat(match[2]), 0, 100);
         var b = clamp(parseFloat(match[3]), 0, 100);
         var a = clamp(isNaN(alpha) ? 1 : alpha, 0, 1);
-        return [h2, w, b, a];
+        return [h3, w, b, a];
       }
       return null;
     };
@@ -8238,37 +8238,37 @@ var require_conversions = __commonJS({
       const min = Math.min(r2, g, b);
       const max = Math.max(r2, g, b);
       const delta = max - min;
-      let h2;
-      let s3;
+      let h3;
+      let s4;
       if (max === min) {
-        h2 = 0;
+        h3 = 0;
       } else if (r2 === max) {
-        h2 = (g - b) / delta;
+        h3 = (g - b) / delta;
       } else if (g === max) {
-        h2 = 2 + (b - r2) / delta;
+        h3 = 2 + (b - r2) / delta;
       } else if (b === max) {
-        h2 = 4 + (r2 - g) / delta;
+        h3 = 4 + (r2 - g) / delta;
       }
-      h2 = Math.min(h2 * 60, 360);
-      if (h2 < 0) {
-        h2 += 360;
+      h3 = Math.min(h3 * 60, 360);
+      if (h3 < 0) {
+        h3 += 360;
       }
       const l = (min + max) / 2;
       if (max === min) {
-        s3 = 0;
+        s4 = 0;
       } else if (l <= 0.5) {
-        s3 = delta / (max + min);
+        s4 = delta / (max + min);
       } else {
-        s3 = delta / (2 - max - min);
+        s4 = delta / (2 - max - min);
       }
-      return [h2, s3 * 100, l * 100];
+      return [h3, s4 * 100, l * 100];
     };
     convert.rgb.hsv = function(rgb) {
       let rdif;
       let gdif;
       let bdif;
-      let h2;
-      let s3;
+      let h3;
+      let s4;
       const r2 = rgb[0] / 255;
       const g = rgb[1] / 255;
       const b = rgb[2] / 255;
@@ -8278,29 +8278,29 @@ var require_conversions = __commonJS({
         return (v - c) / 6 / diff + 1 / 2;
       };
       if (diff === 0) {
-        h2 = 0;
-        s3 = 0;
+        h3 = 0;
+        s4 = 0;
       } else {
-        s3 = diff / v;
+        s4 = diff / v;
         rdif = diffc(r2);
         gdif = diffc(g);
         bdif = diffc(b);
         if (r2 === v) {
-          h2 = bdif - gdif;
+          h3 = bdif - gdif;
         } else if (g === v) {
-          h2 = 1 / 3 + rdif - bdif;
+          h3 = 1 / 3 + rdif - bdif;
         } else if (b === v) {
-          h2 = 2 / 3 + gdif - rdif;
+          h3 = 2 / 3 + gdif - rdif;
         }
-        if (h2 < 0) {
-          h2 += 1;
-        } else if (h2 > 1) {
-          h2 -= 1;
+        if (h3 < 0) {
+          h3 += 1;
+        } else if (h3 > 1) {
+          h3 -= 1;
         }
       }
       return [
-        h2 * 360,
-        s3 * 100,
+        h3 * 360,
+        s4 * 100,
         v * 100
       ];
     };
@@ -8308,10 +8308,10 @@ var require_conversions = __commonJS({
       const r2 = rgb[0];
       const g = rgb[1];
       let b = rgb[2];
-      const h2 = convert.rgb.hsl(rgb)[0];
+      const h3 = convert.rgb.hsl(rgb)[0];
       const w = 1 / 255 * Math.min(r2, Math.min(g, b));
       b = 1 - 1 / 255 * Math.max(r2, Math.max(g, b));
-      return [h2, w * 100, b * 100];
+      return [h3, w * 100, b * 100];
     };
     convert.rgb.cmyk = function(rgb) {
       const r2 = rgb[0] / 255;
@@ -8319,12 +8319,12 @@ var require_conversions = __commonJS({
       const b = rgb[2] / 255;
       const k = Math.min(1 - r2, 1 - g, 1 - b);
       const c = (1 - r2 - k) / (1 - k) || 0;
-      const m2 = (1 - g - k) / (1 - k) || 0;
-      const y = (1 - b - k) / (1 - k) || 0;
-      return [c * 100, m2 * 100, y * 100, k * 100];
+      const m3 = (1 - g - k) / (1 - k) || 0;
+      const y2 = (1 - b - k) / (1 - k) || 0;
+      return [c * 100, m3 * 100, y2 * 100, k * 100];
     };
-    function comparativeDistance(x2, y) {
-      return (x2[0] - y[0]) ** 2 + (x2[1] - y[1]) ** 2 + (x2[2] - y[2]) ** 2;
+    function comparativeDistance(x2, y2) {
+      return (x2[0] - y2[0]) ** 2 + (x2[1] - y2[1]) ** 2 + (x2[2] - y2[2]) ** 2;
     }
     convert.rgb.keyword = function(rgb) {
       const reversed = reverseKeywords[rgb];
@@ -8354,46 +8354,46 @@ var require_conversions = __commonJS({
       g = g > 0.04045 ? ((g + 0.055) / 1.055) ** 2.4 : g / 12.92;
       b = b > 0.04045 ? ((b + 0.055) / 1.055) ** 2.4 : b / 12.92;
       const x2 = r2 * 0.4124 + g * 0.3576 + b * 0.1805;
-      const y = r2 * 0.2126 + g * 0.7152 + b * 0.0722;
+      const y2 = r2 * 0.2126 + g * 0.7152 + b * 0.0722;
       const z = r2 * 0.0193 + g * 0.1192 + b * 0.9505;
-      return [x2 * 100, y * 100, z * 100];
+      return [x2 * 100, y2 * 100, z * 100];
     };
     convert.rgb.lab = function(rgb) {
       const xyz = convert.rgb.xyz(rgb);
       let x2 = xyz[0];
-      let y = xyz[1];
+      let y2 = xyz[1];
       let z = xyz[2];
       x2 /= 95.047;
-      y /= 100;
+      y2 /= 100;
       z /= 108.883;
       x2 = x2 > 8856e-6 ? x2 ** (1 / 3) : 7.787 * x2 + 16 / 116;
-      y = y > 8856e-6 ? y ** (1 / 3) : 7.787 * y + 16 / 116;
+      y2 = y2 > 8856e-6 ? y2 ** (1 / 3) : 7.787 * y2 + 16 / 116;
       z = z > 8856e-6 ? z ** (1 / 3) : 7.787 * z + 16 / 116;
-      const l = 116 * y - 16;
-      const a = 500 * (x2 - y);
-      const b = 200 * (y - z);
+      const l = 116 * y2 - 16;
+      const a = 500 * (x2 - y2);
+      const b = 200 * (y2 - z);
       return [l, a, b];
     };
     convert.hsl.rgb = function(hsl) {
-      const h2 = hsl[0] / 360;
-      const s3 = hsl[1] / 100;
+      const h3 = hsl[0] / 360;
+      const s4 = hsl[1] / 100;
       const l = hsl[2] / 100;
       let t2;
       let t3;
       let val;
-      if (s3 === 0) {
+      if (s4 === 0) {
         val = l * 255;
         return [val, val, val];
       }
       if (l < 0.5) {
-        t2 = l * (1 + s3);
+        t2 = l * (1 + s4);
       } else {
-        t2 = l + s3 - l * s3;
+        t2 = l + s4 - l * s4;
       }
       const t1 = 2 * l - t2;
       const rgb = [0, 0, 0];
       for (let i2 = 0; i2 < 3; i2++) {
-        t3 = h2 + 1 / 3 * -(i2 - 1);
+        t3 = h3 + 1 / 3 * -(i2 - 1);
         if (t3 < 0) {
           t3++;
         }
@@ -8414,27 +8414,27 @@ var require_conversions = __commonJS({
       return rgb;
     };
     convert.hsl.hsv = function(hsl) {
-      const h2 = hsl[0];
-      let s3 = hsl[1] / 100;
+      const h3 = hsl[0];
+      let s4 = hsl[1] / 100;
       let l = hsl[2] / 100;
-      let smin = s3;
+      let smin = s4;
       const lmin = Math.max(l, 0.01);
       l *= 2;
-      s3 *= l <= 1 ? l : 2 - l;
+      s4 *= l <= 1 ? l : 2 - l;
       smin *= lmin <= 1 ? lmin : 2 - lmin;
-      const v = (l + s3) / 2;
-      const sv = l === 0 ? 2 * smin / (lmin + smin) : 2 * s3 / (l + s3);
-      return [h2, sv * 100, v * 100];
+      const v = (l + s4) / 2;
+      const sv = l === 0 ? 2 * smin / (lmin + smin) : 2 * s4 / (l + s4);
+      return [h3, sv * 100, v * 100];
     };
     convert.hsv.rgb = function(hsv) {
-      const h2 = hsv[0] / 60;
-      const s3 = hsv[1] / 100;
+      const h3 = hsv[0] / 60;
+      const s4 = hsv[1] / 100;
       let v = hsv[2] / 100;
-      const hi = Math.floor(h2) % 6;
-      const f3 = h2 - Math.floor(h2);
-      const p = 255 * v * (1 - s3);
-      const q = 255 * v * (1 - s3 * f3);
-      const t2 = 255 * v * (1 - s3 * (1 - f3));
+      const hi = Math.floor(h3) % 6;
+      const f3 = h3 - Math.floor(h3);
+      const p = 255 * v * (1 - s4);
+      const q = 255 * v * (1 - s4 * f3);
+      const t2 = 255 * v * (1 - s4 * (1 - f3));
       v *= 255;
       switch (hi) {
         case 0:
@@ -8452,22 +8452,22 @@ var require_conversions = __commonJS({
       }
     };
     convert.hsv.hsl = function(hsv) {
-      const h2 = hsv[0];
-      const s3 = hsv[1] / 100;
+      const h3 = hsv[0];
+      const s4 = hsv[1] / 100;
       const v = hsv[2] / 100;
       const vmin = Math.max(v, 0.01);
       let sl;
       let l;
-      l = (2 - s3) * v;
-      const lmin = (2 - s3) * vmin;
-      sl = s3 * vmin;
+      l = (2 - s4) * v;
+      const lmin = (2 - s4) * vmin;
+      sl = s4 * vmin;
       sl /= lmin <= 1 ? lmin : 2 - lmin;
       sl = sl || 0;
       l /= 2;
-      return [h2, sl * 100, l * 100];
+      return [h3, sl * 100, l * 100];
     };
     convert.hwb.rgb = function(hwb) {
-      const h2 = hwb[0] / 360;
+      const h3 = hwb[0] / 360;
       let wh = hwb[1] / 100;
       let bl = hwb[2] / 100;
       const ratio = wh + bl;
@@ -8476,9 +8476,9 @@ var require_conversions = __commonJS({
         wh /= ratio;
         bl /= ratio;
       }
-      const i2 = Math.floor(6 * h2);
+      const i2 = Math.floor(6 * h3);
       const v = 1 - bl;
-      f3 = 6 * h2 - i2;
+      f3 = 6 * h3 - i2;
       if ((i2 & 1) !== 0) {
         f3 = 1 - f3;
       }
@@ -8524,24 +8524,24 @@ var require_conversions = __commonJS({
     };
     convert.cmyk.rgb = function(cmyk) {
       const c = cmyk[0] / 100;
-      const m2 = cmyk[1] / 100;
-      const y = cmyk[2] / 100;
+      const m3 = cmyk[1] / 100;
+      const y2 = cmyk[2] / 100;
       const k = cmyk[3] / 100;
       const r2 = 1 - Math.min(1, c * (1 - k) + k);
-      const g = 1 - Math.min(1, m2 * (1 - k) + k);
-      const b = 1 - Math.min(1, y * (1 - k) + k);
+      const g = 1 - Math.min(1, m3 * (1 - k) + k);
+      const b = 1 - Math.min(1, y2 * (1 - k) + k);
       return [r2 * 255, g * 255, b * 255];
     };
     convert.xyz.rgb = function(xyz) {
       const x2 = xyz[0] / 100;
-      const y = xyz[1] / 100;
+      const y2 = xyz[1] / 100;
       const z = xyz[2] / 100;
       let r2;
       let g;
       let b;
-      r2 = x2 * 3.2406 + y * -1.5372 + z * -0.4986;
-      g = x2 * -0.9689 + y * 1.8758 + z * 0.0415;
-      b = x2 * 0.0557 + y * -0.204 + z * 1.057;
+      r2 = x2 * 3.2406 + y2 * -1.5372 + z * -0.4986;
+      g = x2 * -0.9689 + y2 * 1.8758 + z * 0.0415;
+      b = x2 * 0.0557 + y2 * -0.204 + z * 1.057;
       r2 = r2 > 31308e-7 ? 1.055 * r2 ** (1 / 2.4) - 0.055 : r2 * 12.92;
       g = g > 31308e-7 ? 1.055 * g ** (1 / 2.4) - 0.055 : g * 12.92;
       b = b > 31308e-7 ? 1.055 * b ** (1 / 2.4) - 0.055 : b * 12.92;
@@ -8552,17 +8552,17 @@ var require_conversions = __commonJS({
     };
     convert.xyz.lab = function(xyz) {
       let x2 = xyz[0];
-      let y = xyz[1];
+      let y2 = xyz[1];
       let z = xyz[2];
       x2 /= 95.047;
-      y /= 100;
+      y2 /= 100;
       z /= 108.883;
       x2 = x2 > 8856e-6 ? x2 ** (1 / 3) : 7.787 * x2 + 16 / 116;
-      y = y > 8856e-6 ? y ** (1 / 3) : 7.787 * y + 16 / 116;
+      y2 = y2 > 8856e-6 ? y2 ** (1 / 3) : 7.787 * y2 + 16 / 116;
       z = z > 8856e-6 ? z ** (1 / 3) : 7.787 * z + 16 / 116;
-      const l = 116 * y - 16;
-      const a = 500 * (x2 - y);
-      const b = 200 * (y - z);
+      const l = 116 * y2 - 16;
+      const a = 500 * (x2 - y2);
+      const b = 200 * (y2 - z);
       return [l, a, b];
     };
     convert.lab.xyz = function(lab) {
@@ -8570,40 +8570,40 @@ var require_conversions = __commonJS({
       const a = lab[1];
       const b = lab[2];
       let x2;
-      let y;
+      let y2;
       let z;
-      y = (l + 16) / 116;
-      x2 = a / 500 + y;
-      z = y - b / 200;
-      const y2 = y ** 3;
+      y2 = (l + 16) / 116;
+      x2 = a / 500 + y2;
+      z = y2 - b / 200;
+      const y22 = y2 ** 3;
       const x22 = x2 ** 3;
       const z2 = z ** 3;
-      y = y2 > 8856e-6 ? y2 : (y - 16 / 116) / 7.787;
+      y2 = y22 > 8856e-6 ? y22 : (y2 - 16 / 116) / 7.787;
       x2 = x22 > 8856e-6 ? x22 : (x2 - 16 / 116) / 7.787;
       z = z2 > 8856e-6 ? z2 : (z - 16 / 116) / 7.787;
       x2 *= 95.047;
-      y *= 100;
+      y2 *= 100;
       z *= 108.883;
-      return [x2, y, z];
+      return [x2, y2, z];
     };
     convert.lab.lch = function(lab) {
       const l = lab[0];
       const a = lab[1];
       const b = lab[2];
-      let h2;
+      let h3;
       const hr = Math.atan2(b, a);
-      h2 = hr * 360 / 2 / Math.PI;
-      if (h2 < 0) {
-        h2 += 360;
+      h3 = hr * 360 / 2 / Math.PI;
+      if (h3 < 0) {
+        h3 += 360;
       }
       const c = Math.sqrt(a * a + b * b);
-      return [l, c, h2];
+      return [l, c, h3];
     };
     convert.lch.lab = function(lch) {
       const l = lch[0];
       const c = lch[1];
-      const h2 = lch[2];
-      const hr = h2 / 360 * 2 * Math.PI;
+      const h3 = lch[2];
+      const hr = h3 / 360 * 2 * Math.PI;
       const a = c * Math.cos(hr);
       const b = c * Math.sin(hr);
       return [l, a, b];
@@ -8717,9 +8717,9 @@ var require_conversions = __commonJS({
       return [hue * 360, chroma * 100, grayscale * 100];
     };
     convert.hsl.hcg = function(hsl) {
-      const s3 = hsl[1] / 100;
+      const s4 = hsl[1] / 100;
       const l = hsl[2] / 100;
-      const c = l < 0.5 ? 2 * s3 * l : 2 * s3 * (1 - l);
+      const c = l < 0.5 ? 2 * s4 * l : 2 * s4 * (1 - l);
       let f3 = 0;
       if (c < 1) {
         f3 = (l - 0.5 * c) / (1 - c);
@@ -8727,9 +8727,9 @@ var require_conversions = __commonJS({
       return [hsl[0], c * 100, f3 * 100];
     };
     convert.hsv.hcg = function(hsv) {
-      const s3 = hsv[1] / 100;
+      const s4 = hsv[1] / 100;
       const v = hsv[2] / 100;
-      const c = s3 * v;
+      const c = s4 * v;
       let f3 = 0;
       if (c < 1) {
         f3 = (v - c) / (1 - c);
@@ -8737,14 +8737,14 @@ var require_conversions = __commonJS({
       return [hsv[0], c * 100, f3 * 100];
     };
     convert.hcg.rgb = function(hcg) {
-      const h2 = hcg[0] / 360;
+      const h3 = hcg[0] / 360;
       const c = hcg[1] / 100;
       const g = hcg[2] / 100;
       if (c === 0) {
         return [g * 255, g * 255, g * 255];
       }
       const pure = [0, 0, 0];
-      const hi = h2 % 1 * 6;
+      const hi = h3 % 1 * 6;
       const v = hi % 1;
       const w = 1 - v;
       let mg = 0;
@@ -8800,13 +8800,13 @@ var require_conversions = __commonJS({
       const c = hcg[1] / 100;
       const g = hcg[2] / 100;
       const l = g * (1 - c) + 0.5 * c;
-      let s3 = 0;
+      let s4 = 0;
       if (l > 0 && l < 0.5) {
-        s3 = c / (2 * l);
+        s4 = c / (2 * l);
       } else if (l >= 0.5 && l < 1) {
-        s3 = c / (2 * (1 - l));
+        s4 = c / (2 * (1 - l));
       }
-      return [hcg[0], s3 * 100, l * 100];
+      return [hcg[0], s4 * 100, l * 100];
     };
     convert.hcg.hwb = function(hcg) {
       const c = hcg[1] / 100;
@@ -8885,10 +8885,10 @@ var require_route = __commonJS({
         const adjacents = Object.keys(conversions[current]);
         for (let len = adjacents.length, i2 = 0; i2 < len; i2++) {
           const adjacent = adjacents[i2];
-          const node = graph[adjacent];
-          if (node.distance === -1) {
-            node.distance = graph[current].distance + 1;
-            node.parent = current;
+          const node2 = graph[adjacent];
+          if (node2.distance === -1) {
+            node2.distance = graph[current].distance + 1;
+            node2.parent = current;
             queue.unshift(adjacent);
           }
         }
@@ -8918,8 +8918,8 @@ var require_route = __commonJS({
       const models = Object.keys(graph);
       for (let len = models.length, i2 = 0; i2 < len; i2++) {
         const toModel = models[i2];
-        const node = graph[toModel];
-        if (node.parent === null) {
+        const node2 = graph[toModel];
+        if (node2.parent === null) {
           continue;
         }
         conversion[toModel] = wrapConversion(toModel, graph);
@@ -9319,8 +9319,8 @@ var require_color = __commonJS({
     }
     function getset(model, channel, modifier) {
       model = Array.isArray(model) ? model : [model];
-      for (const m2 of model) {
-        (limiters[m2] || (limiters[m2] = []))[channel] = modifier;
+      for (const m3 of model) {
+        (limiters[m3] || (limiters[m3] = []))[channel] = modifier;
       }
       model = model[0];
       return function(value) {
@@ -11220,9 +11220,9 @@ var require_lib = __commonJS({
   }
 });
 
-// .svelte-kit/output/server/chunks/image-placeholders.json-24421abb.js
-var image_placeholders_json_24421abb_exports = {};
-__export(image_placeholders_json_24421abb_exports, {
+// .svelte-kit/output/server/chunks/image-placeholders-ed6236b5.js
+var image_placeholders_ed6236b5_exports = {};
+__export(image_placeholders_ed6236b5_exports, {
   post: () => post
 });
 async function dominantColour({ source }) {
@@ -11251,8 +11251,8 @@ async function lowResolutionPlaceholder({ source }) {
   }
 }
 var import_sharp, import_path, IMAGE_DIR, dominantColourPlaceholder, __dirname2, post;
-var init_image_placeholders_json_24421abb = __esm({
-  ".svelte-kit/output/server/chunks/image-placeholders.json-24421abb.js"() {
+var init_image_placeholders_ed6236b5 = __esm({
+  ".svelte-kit/output/server/chunks/image-placeholders-ed6236b5.js"() {
     init_shims();
     import_sharp = __toModule(require_lib());
     import_path = __toModule(require("path"));
@@ -11302,26 +11302,312 @@ var init_image_placeholders_json_24421abb = __esm({
   }
 });
 
-// .svelte-kit/output/server/chunks/__layout-5ff31284.js
-var layout_5ff31284_exports = {};
-__export(layout_5ff31284_exports, {
+// node_modules/d3-interpolate/src/number.js
+function number_default(a, b) {
+  return a = +a, b = +b, function(t2) {
+    return a * (1 - t2) + b * t2;
+  };
+}
+var init_number = __esm({
+  "node_modules/d3-interpolate/src/number.js"() {
+    init_shims();
+  }
+});
+
+// node_modules/d3-interpolate/src/string.js
+function zero(b) {
+  return function() {
+    return b;
+  };
+}
+function one(b) {
+  return function(t2) {
+    return b(t2) + "";
+  };
+}
+function string_default(a, b) {
+  var bi = reA.lastIndex = reB.lastIndex = 0, am, bm, bs, i2 = -1, s4 = [], q = [];
+  a = a + "", b = b + "";
+  while ((am = reA.exec(a)) && (bm = reB.exec(b))) {
+    if ((bs = bm.index) > bi) {
+      bs = b.slice(bi, bs);
+      if (s4[i2])
+        s4[i2] += bs;
+      else
+        s4[++i2] = bs;
+    }
+    if ((am = am[0]) === (bm = bm[0])) {
+      if (s4[i2])
+        s4[i2] += bm;
+      else
+        s4[++i2] = bm;
+    } else {
+      s4[++i2] = null;
+      q.push({ i: i2, x: number_default(am, bm) });
+    }
+    bi = reB.lastIndex;
+  }
+  if (bi < b.length) {
+    bs = b.slice(bi);
+    if (s4[i2])
+      s4[i2] += bs;
+    else
+      s4[++i2] = bs;
+  }
+  return s4.length < 2 ? q[0] ? one(q[0].x) : zero(b) : (b = q.length, function(t2) {
+    for (var i3 = 0, o; i3 < b; ++i3)
+      s4[(o = q[i3]).i] = o.x(t2);
+    return s4.join("");
+  });
+}
+var reA, reB;
+var init_string = __esm({
+  "node_modules/d3-interpolate/src/string.js"() {
+    init_shims();
+    init_number();
+    reA = /[-+]?(?:\d+\.?\d*|\.?\d+)(?:[eE][-+]?\d+)?/g;
+    reB = new RegExp(reA.source, "g");
+  }
+});
+
+// node_modules/d3-interpolate/src/index.js
+var init_src = __esm({
+  "node_modules/d3-interpolate/src/index.js"() {
+    init_shims();
+    init_string();
+  }
+});
+
+// .svelte-kit/output/server/chunks/IconBase-3dfb7483.js
+var css, IconBase;
+var init_IconBase_3dfb7483 = __esm({
+  ".svelte-kit/output/server/chunks/IconBase-3dfb7483.js"() {
+    init_shims();
+    init_app_f50bec29();
+    css = {
+      code: "svg.svelte-c8tyih{stroke:currentColor;fill:currentColor;stroke-width:0;width:100%;height:auto;max-height:100%}",
+      map: null
+    };
+    IconBase = create_ssr_component(($$result, $$props, $$bindings, slots) => {
+      let { title = null } = $$props;
+      let { viewBox } = $$props;
+      if ($$props.title === void 0 && $$bindings.title && title !== void 0)
+        $$bindings.title(title);
+      if ($$props.viewBox === void 0 && $$bindings.viewBox && viewBox !== void 0)
+        $$bindings.viewBox(viewBox);
+      $$result.css.add(css);
+      return `<svg xmlns="${"http://www.w3.org/2000/svg"}"${add_attribute("viewBox", viewBox, 0)} class="${"svelte-c8tyih"}">${title ? `<title>${escape2(title)}</title>` : ``}${slots.default ? slots.default({}) : ``}</svg>`;
+    });
+  }
+});
+
+// .svelte-kit/output/server/chunks/__layout-116b4e25.js
+var layout_116b4e25_exports = {};
+__export(layout_116b4e25_exports, {
   default: () => _layout
 });
-var logo, css$8, Logo, getStores, page, css$7, Navbar, css$6, Header, css$5, Extended_logo, css$4, Menu_items, victorAlaluf, css$3, IconBase, FaFacebookSquare, FaInstagram, FaYoutubeSquare, css$2, Social_media, css$1, Newsletter_registration, css, Footer, _layout;
-var init_layout_5ff31284 = __esm({
-  ".svelte-kit/output/server/chunks/__layout-5ff31284.js"() {
+function writable2(value, start = noop3) {
+  let stop;
+  const subscribers = new Set();
+  function set(new_value) {
+    if (safe_not_equal2(value, new_value)) {
+      value = new_value;
+      if (stop) {
+        const run_queue = !subscriber_queue2.length;
+        for (const subscriber of subscribers) {
+          subscriber[1]();
+          subscriber_queue2.push(subscriber, value);
+        }
+        if (run_queue) {
+          for (let i2 = 0; i2 < subscriber_queue2.length; i2 += 2) {
+            subscriber_queue2[i2][0](subscriber_queue2[i2 + 1]);
+          }
+          subscriber_queue2.length = 0;
+        }
+      }
+    }
+  }
+  function update(fn) {
+    set(fn(value));
+  }
+  function subscribe2(run2, invalidate = noop3) {
+    const subscriber = [run2, invalidate];
+    subscribers.add(subscriber);
+    if (subscribers.size === 1) {
+      stop = start(set) || noop3;
+    }
+    run2(value);
+    return () => {
+      subscribers.delete(subscriber);
+      if (subscribers.size === 0) {
+        stop();
+        stop = null;
+      }
+    };
+  }
+  return { set, update, subscribe: subscribe2 };
+}
+function cubicOut(t2) {
+  const f3 = t2 - 1;
+  return f3 * f3 * f3 + 1;
+}
+function is_date(obj) {
+  return Object.prototype.toString.call(obj) === "[object Date]";
+}
+function get_interpolator(a, b) {
+  if (a === b || a !== a)
+    return () => a;
+  const type = typeof a;
+  if (type !== typeof b || Array.isArray(a) !== Array.isArray(b)) {
+    throw new Error("Cannot interpolate values of different type");
+  }
+  if (Array.isArray(a)) {
+    const arr = b.map((bi, i2) => {
+      return get_interpolator(a[i2], bi);
+    });
+    return (t2) => arr.map((fn) => fn(t2));
+  }
+  if (type === "object") {
+    if (!a || !b)
+      throw new Error("Object cannot be null");
+    if (is_date(a) && is_date(b)) {
+      a = a.getTime();
+      b = b.getTime();
+      const delta = b - a;
+      return (t2) => new Date(a + t2 * delta);
+    }
+    const keys = Object.keys(b);
+    const interpolators = {};
+    keys.forEach((key) => {
+      interpolators[key] = get_interpolator(a[key], b[key]);
+    });
+    return (t2) => {
+      const result = {};
+      keys.forEach((key) => {
+        result[key] = interpolators[key](t2);
+      });
+      return result;
+    };
+  }
+  if (type === "number") {
+    const delta = b - a;
+    return (t2) => a + t2 * delta;
+  }
+  throw new Error(`Cannot interpolate ${type} values`);
+}
+function tweened(value, defaults = {}) {
+  const store = writable2(value);
+  let task;
+  let target_value = value;
+  function set(new_value, opts) {
+    if (value == null) {
+      store.set(value = new_value);
+      return Promise.resolve();
+    }
+    target_value = new_value;
+    let previous_task = task;
+    let started = false;
+    let { delay = 0, duration = 400, easing = identity, interpolate = get_interpolator } = assign(assign({}, defaults), opts);
+    if (duration === 0) {
+      if (previous_task) {
+        previous_task.abort();
+        previous_task = null;
+      }
+      store.set(value = target_value);
+      return Promise.resolve();
+    }
+    const start = now() + delay;
+    let fn;
+    task = loop((now2) => {
+      if (now2 < start)
+        return true;
+      if (!started) {
+        fn = interpolate(value, new_value);
+        if (typeof duration === "function")
+          duration = duration(value, new_value);
+        started = true;
+      }
+      if (previous_task) {
+        previous_task.abort();
+        previous_task = null;
+      }
+      const elapsed = now2 - start;
+      if (elapsed > duration) {
+        store.set(value = new_value);
+        return false;
+      }
+      store.set(value = fn(easing(elapsed / duration)));
+      return true;
+    });
+    return task.promise;
+  }
+  return {
+    set,
+    update: (fn, opts) => set(fn(target_value, value), opts),
+    subscribe: store.subscribe
+  };
+}
+var logo, css$9, Logo, subscriber_queue2, css$8, Menu_toggler, getStores, page, css$7, Navitems, Navbar, css$6, Header, css$5, Extended_logo, css$4, Menu_items, victorAlaluf, FaFacebookSquare, FaInstagram, FaYoutubeSquare, css$3, Social_media, css$2, Newsletter_registration, css$1, Footer, css2, _layout;
+var init_layout_116b4e25 = __esm({
+  ".svelte-kit/output/server/chunks/__layout-116b4e25.js"() {
     init_shims();
-    init_app_87c6be8d();
+    init_app_f50bec29();
+    init_src();
+    init_IconBase_3dfb7483();
     init_ssr();
     logo = "/_app/assets/logo_sinfronteras-417x150-b8bed806.png";
-    css$8 = {
+    css$9 = {
       code: ".logo.svelte-49o8hf.svelte-49o8hf{font-size:1.5rem;display:flex;justify-content:center;align-items:center;z-index:101}.logo.svelte-49o8hf a.svelte-49o8hf{padding-top:0.2rem;width:10rem}",
       map: null
     };
     Logo = create_ssr_component(($$result, $$props, $$bindings, slots) => {
-      $$result.css.add(css$8);
+      createEventDispatcher();
+      $$result.css.add(css$9);
       return `<div class="${"logo svelte-49o8hf"}"><a href="${"/"}" class="${"svelte-49o8hf"}"><img${add_attribute("src", logo, 0)} alt="${"Sin Fronteras Logo"}" width="${"200"}" height="${"75"}" loading="${"lazy"}" decoding="${"async"}"></a>
 </div>`;
+    });
+    subscriber_queue2 = [];
+    css$8 = {
+      code: "button.svelte-fia3zc{height:50px;width:50px;border-radius:50%;background:transparent;outline:none;border:none;cursor:pointer;display:flex;align-items:center;justify-content:center}path.svelte-fia3zc{stroke:white;stroke-linecap:round;stroke-width:3;fill:transparent}svg.svelte-fia3zc{width:32px;height:32px}",
+      map: null
+    };
+    Menu_toggler = create_ssr_component(($$result, $$props, $$bindings, slots) => {
+      let $topD, $$unsubscribe_topD;
+      let $opacity, $$unsubscribe_opacity;
+      let $bottomD, $$unsubscribe_bottomD;
+      let { isMenuOpen = false } = $$props;
+      const topDRange = ["M 2 2.5 L 20 2.5", "M 3 16.5 L 17 2.5"];
+      const opacityRange = [1, 0];
+      const bottomDRange = ["M 2 16.5 L 20 16.5", "M 3 2.5 L 17 16.5"];
+      let topD = tweened(topDRange[0], {
+        duration: 200,
+        easing: cubicOut,
+        interpolate: string_default
+      });
+      $$unsubscribe_topD = subscribe(topD, (value) => $topD = value);
+      let opacity = tweened(opacityRange[0], { duration: 200, easing: cubicOut });
+      $$unsubscribe_opacity = subscribe(opacity, (value) => $opacity = value);
+      let bottomD = tweened(bottomDRange[0], {
+        duration: 200,
+        easing: cubicOut,
+        interpolate: string_default
+      });
+      $$unsubscribe_bottomD = subscribe(bottomD, (value) => $bottomD = value);
+      if ($$props.isMenuOpen === void 0 && $$bindings.isMenuOpen && isMenuOpen !== void 0)
+        $$bindings.isMenuOpen(isMenuOpen);
+      $$result.css.add(css$8);
+      {
+        {
+          topD.set(isMenuOpen ? topDRange[1] : topDRange[0]);
+          opacity.set(isMenuOpen ? opacityRange[1] : opacityRange[0]);
+          bottomD.set(isMenuOpen ? bottomDRange[1] : bottomDRange[0]);
+        }
+      }
+      $$unsubscribe_topD();
+      $$unsubscribe_opacity();
+      $$unsubscribe_bottomD();
+      return `<button class="${"svelte-fia3zc"}"><svg viewBox="${"0 0 22 22"}" class="${"svelte-fia3zc"}"><path${add_attribute("d", $topD, 0)} class="${"svelte-fia3zc"}"></path><path d="${"M 2 9.5 L 20 9.5"}" style="${"opacity:" + escape2($opacity) + ";"}" class="${"svelte-fia3zc"}"></path><path${add_attribute("d", $bottomD, 0)} class="${"svelte-fia3zc"}"></path></svg>
+</button>`;
     });
     getStores = () => {
       const stores = getContext("__svelte__");
@@ -11348,31 +11634,45 @@ var init_layout_5ff31284 = __esm({
       }
     };
     css$7 = {
-      code: ".active.svelte-v9sd3t.svelte-v9sd3t{color:#f79523}nav.svelte-v9sd3t ul.svelte-v9sd3t{display:flex;flex-direction:column;justify-content:center;justify-items:center;margin:0;padding:0}@media(min-width: 600px){nav.svelte-v9sd3t ul.svelte-v9sd3t{margin:0 0;flex-direction:row;justify-content:flex-end;justify-items:center}}nav.svelte-v9sd3t ul li.svelte-v9sd3t{list-style:none;margin:auto;width:fit-content;padding:0.5rem 0}@media(min-width: 600px){nav.svelte-v9sd3t ul li.svelte-v9sd3t{margin:0;padding:1rem}}nav.svelte-v9sd3t ul li a.svelte-v9sd3t{text-decoration:none;color:#dddddd;font-size:0.9rem;letter-spacing:0.1rem;font-weight:700}nav.svelte-v9sd3t ul li a:hover .underline.svelte-v9sd3t{height:4px;background-color:#f79523;width:100%}nav.svelte-v9sd3t ul li a .underline.svelte-v9sd3t{height:4px;width:0%;margin:0 auto;background-color:transparent;transition:width 0.3s ease-out}",
+      code: ".active.svelte-iptkzr.svelte-iptkzr{color:#f79523}ul.svelte-iptkzr.svelte-iptkzr{display:flex;flex-direction:column;justify-content:center;justify-items:center;margin:0;padding:0;background-color:black;position:absolute;width:100%;z-index:1}@media(min-width: 600px){ul.svelte-iptkzr.svelte-iptkzr{position:relative;margin:0 0;flex-direction:row;justify-content:flex-end;justify-items:center}}ul.svelte-iptkzr li.svelte-iptkzr{list-style:none;margin:auto;width:fit-content;padding:0.5rem 0}@media(min-width: 600px){ul.svelte-iptkzr li.svelte-iptkzr{margin:0;padding:1rem}}ul.svelte-iptkzr li a.svelte-iptkzr{text-decoration:none;color:#dddddd;font-size:0.9rem;letter-spacing:0.1rem;font-weight:700}ul.svelte-iptkzr li a:hover .underline.svelte-iptkzr{height:4px;background-color:#f79523;width:100%}ul.svelte-iptkzr li a .underline.svelte-iptkzr{height:4px;width:0%;margin:0 auto;background-color:transparent;transition:width 0.3s ease-out}",
       map: null
     };
-    Navbar = create_ssr_component(($$result, $$props, $$bindings, slots) => {
+    Navitems = create_ssr_component(($$result, $$props, $$bindings, slots) => {
       let $page, $$unsubscribe_page;
       $$unsubscribe_page = subscribe(page, (value) => $page = value);
+      createEventDispatcher();
       $$result.css.add(css$7);
       $$unsubscribe_page();
-      return `<nav class="${"svelte-v9sd3t"}"><ul class="${"svelte-v9sd3t"}"><li class="${"svelte-v9sd3t"}"><a href="${"/destinations"}" class="${["svelte-v9sd3t", $page.path === "/destinations" ? "active" : ""].join(" ").trim()}">DESTINATIONS
-				<div class="${"underline svelte-v9sd3t"}"></div></a></li>
-		<li class="${"svelte-v9sd3t"}"><a href="${"/shop"}" class="${["svelte-v9sd3t", $page.path === "/shop" ? "active" : ""].join(" ").trim()}">SHOP
-				<div class="${"underline svelte-v9sd3t"}"></div></a></li>
-		<li class="${"svelte-v9sd3t"}"><a href="${"/contact"}" class="${["svelte-v9sd3t", $page.path === "/contact" ? "active" : ""].join(" ").trim()}">CONTACT
-				<div class="${"underline svelte-v9sd3t"}"></div></a></li></ul>
-</nav>`;
+      return `<ul class="${"svelte-iptkzr"}"><li class="${"svelte-iptkzr"}"><a href="${"/destinations"}" class="${["svelte-iptkzr", $page.path === "/destinations" ? "active" : ""].join(" ").trim()}">DESTINATIONS
+			<div class="${"underline svelte-iptkzr"}"></div></a></li>
+	<li class="${"svelte-iptkzr"}"><a href="${"/shop"}" class="${["svelte-iptkzr", $page.path === "/shop" ? "active" : ""].join(" ").trim()}">SHOP
+			<div class="${"underline svelte-iptkzr"}"></div></a></li>
+	<li class="${"svelte-iptkzr"}"><a href="${"/contact"}" class="${["svelte-iptkzr", $page.path === "/contact" ? "active" : ""].join(" ").trim()}">CONTACT
+			<div class="${"underline svelte-iptkzr"}"></div></a></li>
+</ul>`;
+    });
+    Navbar = create_ssr_component(($$result, $$props, $$bindings, slots) => {
+      let { isMobile } = $$props;
+      if ($$props.isMobile === void 0 && $$bindings.isMobile && isMobile !== void 0)
+        $$bindings.isMobile(isMobile);
+      return `${isMobile ? `<nav>${validate_component(Navitems, "Navitems").$$render($$result, {}, {}, {})}</nav>` : `<nav>${validate_component(Navitems, "Navitems").$$render($$result, {}, {}, {})}</nav>`}`;
     });
     css$6 = {
       code: ".header.svelte-1tqnipj{position:fixed;top:0;left:0;width:100%;display:flex;flex-direction:row;justify-content:space-between;align-items:center;padding:0rem 0.5rem;height:5rem;background-color:black;z-index:10}",
       map: null
     };
     Header = create_ssr_component(($$result, $$props, $$bindings, slots) => {
+      let isMobile;
+      let winWidth;
+      let isMenuOpen = false;
       $$result.css.add(css$6);
-      return `<header class="${"header svelte-1tqnipj"}">${validate_component(Logo, "Logo").$$render($$result, {}, {}, {})}
-	${validate_component(Navbar, "Navbar").$$render($$result, {}, {}, {})}
-</header>`;
+      isMobile = winWidth < 600;
+      return `
+
+${isMobile ? `<header><div class="${"header svelte-1tqnipj"}">${validate_component(Logo, "Logo").$$render($$result, {}, {}, {})}
+			${validate_component(Menu_toggler, "MenuToggler").$$render($$result, { isMenuOpen }, {}, {})}</div>
+		${``}</header>` : `<header class="${"header svelte-1tqnipj"}">${validate_component(Logo, "Logo").$$render($$result, {}, {}, {})}
+		${validate_component(Navbar, "Navbar").$$render($$result, { isMobile: true }, {}, {})}</header>`}`;
     });
     css$5 = {
       code: ".container.svelte-1cc0slw.svelte-1cc0slw{display:flex;flex-direction:column;color:white;align-items:center}@media(min-width: 1000px){.container.svelte-1cc0slw.svelte-1cc0slw{align-items:flex-start}}.container.svelte-1cc0slw h1.svelte-1cc0slw{font-size:1.2rem;font-style:italic;margin:0 0 0.5rem 0;color:#f79523}.container.svelte-1cc0slw .email.svelte-1cc0slw{font-size:1rem;margin:0 0 0.5rem 0}.container.svelte-1cc0slw p.svelte-1cc0slw{color:#c0c8c9;font-size:0.8rem;margin:0}.container.svelte-1cc0slw img.svelte-1cc0slw{margin-left:-1rem;margin-top:-0.3rem;width:12rem}",
@@ -11402,20 +11702,6 @@ var init_layout_5ff31284 = __esm({
 	</ul>`;
     });
     victorAlaluf = "/_app/assets/victoralaluf-037f3c8f.png";
-    css$3 = {
-      code: "svg.svelte-c8tyih{stroke:currentColor;fill:currentColor;stroke-width:0;width:100%;height:auto;max-height:100%}",
-      map: null
-    };
-    IconBase = create_ssr_component(($$result, $$props, $$bindings, slots) => {
-      let { title = null } = $$props;
-      let { viewBox } = $$props;
-      if ($$props.title === void 0 && $$bindings.title && title !== void 0)
-        $$bindings.title(title);
-      if ($$props.viewBox === void 0 && $$bindings.viewBox && viewBox !== void 0)
-        $$bindings.viewBox(viewBox);
-      $$result.css.add(css$3);
-      return `<svg xmlns="${"http://www.w3.org/2000/svg"}"${add_attribute("viewBox", viewBox, 0)} class="${"svelte-c8tyih"}">${title ? `<title>${escape2(title)}</title>` : ``}${slots.default ? slots.default({}) : ``}</svg>`;
-    });
     FaFacebookSquare = create_ssr_component(($$result, $$props, $$bindings, slots) => {
       return `${validate_component(IconBase, "IconBase").$$render($$result, Object.assign({ viewBox: "0 0 448 512" }, $$props), {}, {
         default: () => `<path d="${"M400 32H48A48 48 0 0 0 0 80v352a48 48 0 0 0 48 48h137.25V327.69h-63V256h63v-54.64c0-62.15 37-96.48 93.67-96.48 27.14 0 55.52 4.84 55.52 4.84v61h-31.27c-30.81 0-40.42 19.12-40.42 38.73V256h68.78l-11 71.69h-57.78V480H400a48 48 0 0 0 48-48V80a48 48 0 0 0-48-48z"}"></path>`
@@ -11431,12 +11717,12 @@ var init_layout_5ff31284 = __esm({
         default: () => `<path d="${"M186.8 202.1l95.2 54.1-95.2 54.1V202.1zM448 80v352c0 26.5-21.5 48-48 48H48c-26.5 0-48-21.5-48-48V80c0-26.5 21.5-48 48-48h352c26.5 0 48 21.5 48 48zm-42 176.3s0-59.6-7.6-88.2c-4.2-15.8-16.5-28.2-32.2-32.4C337.9 128 224 128 224 128s-113.9 0-142.2 7.7c-15.7 4.2-28 16.6-32.2 32.4-7.6 28.5-7.6 88.2-7.6 88.2s0 59.6 7.6 88.2c4.2 15.8 16.5 27.7 32.2 31.9C110.1 384 224 384 224 384s113.9 0 142.2-7.7c15.7-4.2 28-16.1 32.2-31.9 7.6-28.5 7.6-88.1 7.6-88.1z"}"></path>`
       })}`;
     });
-    css$2 = {
+    css$3 = {
       code: ".container.svelte-1y12y5l.svelte-1y12y5l{position:relative;display:flex;align-items:center;color:white}@media(min-width: 1000px){.container.svelte-1y12y5l.svelte-1y12y5l{margin-top:1.1rem;flex-direction:column;align-items:flex-start}}.item.svelte-1y12y5l.svelte-1y12y5l{display:flex;align-items:center;justify-content:center;margin:0.5rem}@media(min-width: 1000px){.item.svelte-1y12y5l.svelte-1y12y5l{margin:0.5rem 0}}.item.svelte-1y12y5l p.svelte-1y12y5l{margin:0 1rem;text-decoration:underline solid transparent;transition:text-decoration 0.3s ease-out}.item.svelte-1y12y5l p.svelte-1y12y5l:hover{text-decoration:underline solid white}.social_text.svelte-1y12y5l.svelte-1y12y5l{display:none}@media(min-width: 1000px){.social_text.svelte-1y12y5l.svelte-1y12y5l{display:block}}.image.svelte-1y12y5l.svelte-1y12y5l{margin:0;height:25px}@media(min-width: 1000px){.image.svelte-1y12y5l.svelte-1y12y5l{margin:0}}.icon.svelte-1y12y5l.svelte-1y12y5l{width:1.5rem}",
       map: null
     };
     Social_media = create_ssr_component(($$result, $$props, $$bindings, slots) => {
-      $$result.css.add(css$2);
+      $$result.css.add(css$3);
       return `<div class="${"container svelte-1y12y5l"}"><a id="${"facebook"}" class="${"item svelte-1y12y5l"}" href="${"https://www.facebook.com/victor.alaluf"}"><span class="${"icon svelte-1y12y5l"}" style="${"color: #4267B2;"}">${validate_component(FaFacebookSquare, "FaFacebookSquare").$$render($$result, {}, {}, {})}</span>
 		<p class="${"social_text svelte-1y12y5l"}">FACEBOOK</p></a>
 	<a id="${"instagram"}" class="${"item svelte-1y12y5l"}" href="${"https://www.instagram.com/alalufvictor.sinfronteras/"}"><span class="${"icon svelte-1y12y5l"}" style="${"color: #833AB4;"}">${validate_component(FaInstagram, "FaInstagram").$$render($$result, {}, {}, {})}</span>
@@ -11448,13 +11734,13 @@ var init_layout_5ff31284 = __esm({
 		<p class="${"social_text svelte-1y12y5l"}">VICTOR ALALUF</p></a>
 </div>`;
     });
-    css$1 = {
+    css$2 = {
       code: ".container.svelte-cf29go.svelte-cf29go{margin-top:1rem;color:white;text-align:center}@media(min-width: 1000px){.container.svelte-cf29go.svelte-cf29go{text-align:left}}.container.svelte-cf29go p.svelte-cf29go{color:#c0c8c9}.container.svelte-cf29go input.svelte-cf29go{height:2.5rem;padding:0 0.5rem;background-color:#181c1e;color:#6b7576;border:none;border-radius:5px}@media(max-width: 510px){.container.svelte-cf29go input.svelte-cf29go{width:100%}}.container.svelte-cf29go button.svelte-cf29go{margin:0 1rem;cursor:pointer;padding:0.7rem 1rem;background-color:#f79523;border:none;outline:none;border-radius:5px}@media(max-width: 510px){.container.svelte-cf29go button.svelte-cf29go{width:100%;margin:0}}.container.svelte-cf29go button.svelte-cf29go:active{transform:scale(0.95)}",
       map: null
     };
     Newsletter_registration = create_ssr_component(($$result, $$props, $$bindings, slots) => {
       let emailInputElement;
-      $$result.css.add(css$1);
+      $$result.css.add(css$2);
       return `<div class="${"container svelte-cf29go"}"><p class="${"svelte-cf29go"}"><strong>SUBSCRIBE TO THE NEWSLETTER</strong></p>
 	<p class="${"svelte-cf29go"}">Join our community to receive useful information and tips</p>
 	<form><input type="${"email"}" id="${"user-email"}" placeholder="${"Your Email"}" class="${"svelte-cf29go"}"${add_attribute("this", emailInputElement, 0)}>
@@ -11462,47 +11748,51 @@ var init_layout_5ff31284 = __esm({
 	${``}
 </div>`;
     });
-    css = {
+    css$1 = {
       code: ".container.svelte-1h37g16{padding:3rem 1rem;display:flex;background-color:black;flex-direction:column;align-items:center}@media(min-width: 1000px){.container.svelte-1h37g16{padding:3rem 5rem;flex-direction:row;justify-content:space-between;align-items:flex-start}}",
       map: null
     };
     Footer = create_ssr_component(($$result, $$props, $$bindings, slots) => {
-      $$result.css.add(css);
+      $$result.css.add(css$1);
       return `<div class="${"container svelte-1h37g16"}">${validate_component(Extended_logo, "ExtendedLogo").$$render($$result, {}, {}, {})}
 	${validate_component(Menu_items, "MenuItems").$$render($$result, {}, {}, {})}
 	${validate_component(Social_media, "SocialMedia").$$render($$result, {}, {}, {})}
 	${validate_component(Newsletter_registration, "NewsletterRegistration").$$render($$result, {}, {}, {})}
 </div>`;
     });
+    css2 = {
+      code: ".main.svelte-ysiy02{margin-top:5rem}",
+      map: null
+    };
     _layout = create_ssr_component(($$result, $$props, $$bindings, slots) => {
+      $$result.css.add(css2);
       return `
 
 
-
 ${validate_component(Header, "Header").$$render($$result, {}, {}, {})}
-${slots.default ? slots.default({}) : ``}
+<main class="${"main svelte-ysiy02"}">${slots.default ? slots.default({}) : ``}</main>
 ${validate_component(Footer, "Footer").$$render($$result, {}, {}, {})}`;
     });
   }
 });
 
-// .svelte-kit/output/server/chunks/__error-bc64ff31.js
-var error_bc64ff31_exports = {};
-__export(error_bc64ff31_exports, {
+// .svelte-kit/output/server/chunks/__error-190df1a4.js
+var error_190df1a4_exports = {};
+__export(error_190df1a4_exports, {
   default: () => _error
 });
-var css2, _error;
-var init_error_bc64ff31 = __esm({
-  ".svelte-kit/output/server/chunks/__error-bc64ff31.js"() {
+var css3, _error;
+var init_error_190df1a4 = __esm({
+  ".svelte-kit/output/server/chunks/__error-190df1a4.js"() {
     init_shims();
-    init_app_87c6be8d();
+    init_app_f50bec29();
     init_ssr();
-    css2 = {
+    css3 = {
       code: ".section.svelte-1mc67xs{text-align:center;margin:auto auto;display:flex;flex-direction:column;justify-content:center;align-items:center;margin-bottom:2rem;height:50vh}.title.svelte-1mc67xs{font-size:xx-large;margin:0.5rem 0}.subtitle.svelte-1mc67xs{font-size:large;margin:0.5rem 0 2rem}.button.svelte-1mc67xs{padding:0.5rem 2rem;color:white;background-color:#f79523}",
       map: null
     };
     _error = create_ssr_component(($$result, $$props, $$bindings, slots) => {
-      $$result.css.add(css2);
+      $$result.css.add(css3);
       return `<div class="${"section svelte-1mc67xs"}"><h1 class="${"title svelte-1mc67xs"}">Something went wrong!</h1>
 	<p class="${"subtitle svelte-1mc67xs"}">We can&#39;t find the page you are looking for. Go back Home</p>
 	<a class="${"button svelte-1mc67xs"}" href="${"/"}">Home</a>
@@ -11511,26 +11801,840 @@ var init_error_bc64ff31 = __esm({
   }
 });
 
-// .svelte-kit/output/server/chunks/index-c484a2d0.js
-var index_c484a2d0_exports = {};
-__export(index_c484a2d0_exports, {
+// .svelte-kit/output/server/chunks/index-d0b7f88b.js
+var index_d0b7f88b_exports = {};
+__export(index_d0b7f88b_exports, {
   default: () => Routes
 });
-var css3, Video_opening, Routes;
-var init_index_c484a2d0 = __esm({
-  ".svelte-kit/output/server/chunks/index-c484a2d0.js"() {
+function setAttributes(script, attrs) {
+  for (var attr in attrs) {
+    script.setAttribute(attr, attrs[attr]);
+  }
+}
+function stdOnEnd(script, cb) {
+  script.onload = function() {
+    this.onerror = this.onload = null;
+    cb(null, script);
+  };
+  script.onerror = function() {
+    this.onerror = this.onload = null;
+    cb(new Error("Failed to load " + this.src), script);
+  };
+}
+function ieOnEnd(script, cb) {
+  script.onreadystatechange = function() {
+    if (this.readyState != "complete" && this.readyState != "loaded")
+      return;
+    this.onreadystatechange = null;
+    cb(null, script);
+  };
+}
+function parse(str) {
+  str = String(str);
+  if (str.length > 100) {
+    return;
+  }
+  var match = /^((?:\d+)?\.?\d+) *(milliseconds?|msecs?|ms|seconds?|secs?|s|minutes?|mins?|m|hours?|hrs?|h|days?|d|years?|yrs?|y)?$/i.exec(str);
+  if (!match) {
+    return;
+  }
+  var n = parseFloat(match[1]);
+  var type = (match[2] || "ms").toLowerCase();
+  switch (type) {
+    case "years":
+    case "year":
+    case "yrs":
+    case "yr":
+    case "y":
+      return n * y;
+    case "days":
+    case "day":
+    case "d":
+      return n * d;
+    case "hours":
+    case "hour":
+    case "hrs":
+    case "hr":
+    case "h":
+      return n * h2;
+    case "minutes":
+    case "minute":
+    case "mins":
+    case "min":
+    case "m":
+      return n * m2;
+    case "seconds":
+    case "second":
+    case "secs":
+    case "sec":
+    case "s":
+      return n * s3;
+    case "milliseconds":
+    case "millisecond":
+    case "msecs":
+    case "msec":
+    case "ms":
+      return n;
+    default:
+      return void 0;
+  }
+}
+function fmtShort(ms2) {
+  if (ms2 >= d) {
+    return Math.round(ms2 / d) + "d";
+  }
+  if (ms2 >= h2) {
+    return Math.round(ms2 / h2) + "h";
+  }
+  if (ms2 >= m2) {
+    return Math.round(ms2 / m2) + "m";
+  }
+  if (ms2 >= s3) {
+    return Math.round(ms2 / s3) + "s";
+  }
+  return ms2 + "ms";
+}
+function fmtLong(ms2) {
+  return plural(ms2, d, "day") || plural(ms2, h2, "hour") || plural(ms2, m2, "minute") || plural(ms2, s3, "second") || ms2 + " ms";
+}
+function plural(ms2, n, name) {
+  if (ms2 < n) {
+    return;
+  }
+  if (ms2 < n * 1.5) {
+    return Math.floor(ms2 / n) + " " + name;
+  }
+  return Math.ceil(ms2 / n) + " " + name + "s";
+}
+var import_tty, import_util, import_fs, import_net3, css$22, Video_opening, Abouttext, dist, Sister, sister, loadYouTubeIframeApi, loadScript, YouTubePlayer, src, browser, debug, s3, m2, h2, d, y, ms, node, functionNames, eventNames, FunctionStateMap, PlayerStates, FaPlay, css$12, Youtube_card, css4, Hero, Routes;
+var init_index_d0b7f88b = __esm({
+  ".svelte-kit/output/server/chunks/index-d0b7f88b.js"() {
     init_shims();
-    init_app_87c6be8d();
+    init_app_f50bec29();
+    import_tty = __toModule(require("tty"));
+    import_util = __toModule(require("util"));
+    import_fs = __toModule(require("fs"));
+    import_net3 = __toModule(require("net"));
+    init_IconBase_3dfb7483();
     init_ssr();
-    css3 = {
+    css$22 = {
       code: ".container.svelte-levgto{background-color:black}",
       map: null
     };
     Video_opening = create_ssr_component(($$result, $$props, $$bindings, slots) => {
-      $$result.css.add(css3);
+      $$result.css.add(css$22);
       return `<div class="${"container svelte-levgto"}"><video autoplay loop muted poster="${"$lib/assets/images/background/mapa-verde-small.jpg"}" class="${"video"}" width="${"100%"}"><source src="${"/videos/sinfronteras-intro-hd.webm"}" type="${"video/webm"}"><source src="${"/videos/sinfronteras-intro-hd.mp4"}" type="${"video/mp4"}">
 		Sorry, your browser does not support embedded videos.
 	</video>
+</div>`;
+    });
+    Abouttext = create_ssr_component(($$result, $$props, $$bindings, slots) => {
+      return `<p class="${"lead"}"><strong>Good Day World, Good Day Travellers!</strong>Welcome to my Travel Blog - Sin Fronteras. My
+	name is Victor Alaluf. I have been working as a plastic artist for over 20 years. Today life has
+	given me the opportunity to travel and share this experience with others. We live only once and we
+	must make the best of it. My greatest passion is to get to know new cultures and corners of this
+	beautiful planet on which we live. I promise to share with you the best experiences of my life and
+	at the same time seek to inspire everyone who watches my videos, so that they can also enjoy a
+	life full of travel and experiences. Sin Fronteras (Without Boundaries) is inspired by travel
+	books and each blog has a different destination. Sin Fronteras goes beyond the most popular
+	tourist destinations in order to offer you a more authentic view of the local culture as well as
+	participate in different aspects of regional life discovering new horizons in this wonderful world
+	without Boundaries.
+</p>`;
+    });
+    dist = { exports: {} };
+    Sister = function() {
+      var sister2 = {}, events = {};
+      sister2.on = function(name, handler) {
+        var listener = { name, handler };
+        events[name] = events[name] || [];
+        events[name].unshift(listener);
+        return listener;
+      };
+      sister2.off = function(listener) {
+        var index = events[listener.name].indexOf(listener);
+        if (index !== -1) {
+          events[listener.name].splice(index, 1);
+        }
+      };
+      sister2.trigger = function(name, data) {
+        var listeners = events[name], i2;
+        if (listeners) {
+          i2 = listeners.length;
+          while (i2--) {
+            listeners[i2].handler(data);
+          }
+        }
+      };
+      return sister2;
+    };
+    sister = Sister;
+    loadYouTubeIframeApi = { exports: {} };
+    loadScript = function load(src2, opts, cb) {
+      var head = document.head || document.getElementsByTagName("head")[0];
+      var script = document.createElement("script");
+      if (typeof opts === "function") {
+        cb = opts;
+        opts = {};
+      }
+      opts = opts || {};
+      cb = cb || function() {
+      };
+      script.type = opts.type || "text/javascript";
+      script.charset = opts.charset || "utf8";
+      script.async = "async" in opts ? !!opts.async : true;
+      script.src = src2;
+      if (opts.attrs) {
+        setAttributes(script, opts.attrs);
+      }
+      if (opts.text) {
+        script.text = "" + opts.text;
+      }
+      var onend = "onload" in script ? stdOnEnd : ieOnEnd;
+      onend(script, cb);
+      if (!script.onload) {
+        stdOnEnd(script, cb);
+      }
+      head.appendChild(script);
+    };
+    (function(module2, exports) {
+      Object.defineProperty(exports, "__esModule", {
+        value: true
+      });
+      var _loadScript = loadScript;
+      var _loadScript2 = _interopRequireDefault(_loadScript);
+      function _interopRequireDefault(obj) {
+        return obj && obj.__esModule ? obj : { default: obj };
+      }
+      exports.default = function(emitter) {
+        var iframeAPIReady = new Promise(function(resolve2) {
+          if (window.YT && window.YT.Player && window.YT.Player instanceof Function) {
+            resolve2(window.YT);
+            return;
+          } else {
+            var protocol = window.location.protocol === "http:" ? "http:" : "https:";
+            (0, _loadScript2.default)(protocol + "//www.youtube.com/iframe_api", function(error2) {
+              if (error2) {
+                emitter.trigger("error", error2);
+              }
+            });
+          }
+          var previous = window.onYouTubeIframeAPIReady;
+          window.onYouTubeIframeAPIReady = function() {
+            if (previous) {
+              previous();
+            }
+            resolve2(window.YT);
+          };
+        });
+        return iframeAPIReady;
+      };
+      module2.exports = exports["default"];
+    })(loadYouTubeIframeApi, loadYouTubeIframeApi.exports);
+    YouTubePlayer = { exports: {} };
+    src = { exports: {} };
+    browser = { exports: {} };
+    debug = { exports: {} };
+    s3 = 1e3;
+    m2 = s3 * 60;
+    h2 = m2 * 60;
+    d = h2 * 24;
+    y = d * 365.25;
+    ms = function(val, options2) {
+      options2 = options2 || {};
+      var type = typeof val;
+      if (type === "string" && val.length > 0) {
+        return parse(val);
+      } else if (type === "number" && isNaN(val) === false) {
+        return options2.long ? fmtLong(val) : fmtShort(val);
+      }
+      throw new Error("val is not a non-empty string or a valid number. val=" + JSON.stringify(val));
+    };
+    (function(module2, exports) {
+      exports = module2.exports = createDebug.debug = createDebug["default"] = createDebug;
+      exports.coerce = coerce;
+      exports.disable = disable;
+      exports.enable = enable;
+      exports.enabled = enabled;
+      exports.humanize = ms;
+      exports.names = [];
+      exports.skips = [];
+      exports.formatters = {};
+      var prevTime;
+      function selectColor(namespace) {
+        var hash2 = 0, i2;
+        for (i2 in namespace) {
+          hash2 = (hash2 << 5) - hash2 + namespace.charCodeAt(i2);
+          hash2 |= 0;
+        }
+        return exports.colors[Math.abs(hash2) % exports.colors.length];
+      }
+      function createDebug(namespace) {
+        function debug2() {
+          if (!debug2.enabled)
+            return;
+          var self2 = debug2;
+          var curr = +new Date();
+          var ms2 = curr - (prevTime || curr);
+          self2.diff = ms2;
+          self2.prev = prevTime;
+          self2.curr = curr;
+          prevTime = curr;
+          var args = new Array(arguments.length);
+          for (var i2 = 0; i2 < args.length; i2++) {
+            args[i2] = arguments[i2];
+          }
+          args[0] = exports.coerce(args[0]);
+          if (typeof args[0] !== "string") {
+            args.unshift("%O");
+          }
+          var index = 0;
+          args[0] = args[0].replace(/%([a-zA-Z%])/g, function(match, format2) {
+            if (match === "%%")
+              return match;
+            index++;
+            var formatter = exports.formatters[format2];
+            if (typeof formatter === "function") {
+              var val = args[index];
+              match = formatter.call(self2, val);
+              args.splice(index, 1);
+              index--;
+            }
+            return match;
+          });
+          exports.formatArgs.call(self2, args);
+          var logFn = debug2.log || exports.log || console.log.bind(console);
+          logFn.apply(self2, args);
+        }
+        debug2.namespace = namespace;
+        debug2.enabled = exports.enabled(namespace);
+        debug2.useColors = exports.useColors();
+        debug2.color = selectColor(namespace);
+        if (typeof exports.init === "function") {
+          exports.init(debug2);
+        }
+        return debug2;
+      }
+      function enable(namespaces) {
+        exports.save(namespaces);
+        exports.names = [];
+        exports.skips = [];
+        var split = (typeof namespaces === "string" ? namespaces : "").split(/[\s,]+/);
+        var len = split.length;
+        for (var i2 = 0; i2 < len; i2++) {
+          if (!split[i2])
+            continue;
+          namespaces = split[i2].replace(/\*/g, ".*?");
+          if (namespaces[0] === "-") {
+            exports.skips.push(new RegExp("^" + namespaces.substr(1) + "$"));
+          } else {
+            exports.names.push(new RegExp("^" + namespaces + "$"));
+          }
+        }
+      }
+      function disable() {
+        exports.enable("");
+      }
+      function enabled(name) {
+        var i2, len;
+        for (i2 = 0, len = exports.skips.length; i2 < len; i2++) {
+          if (exports.skips[i2].test(name)) {
+            return false;
+          }
+        }
+        for (i2 = 0, len = exports.names.length; i2 < len; i2++) {
+          if (exports.names[i2].test(name)) {
+            return true;
+          }
+        }
+        return false;
+      }
+      function coerce(val) {
+        if (val instanceof Error)
+          return val.stack || val.message;
+        return val;
+      }
+    })(debug, debug.exports);
+    (function(module2, exports) {
+      exports = module2.exports = debug.exports;
+      exports.log = log;
+      exports.formatArgs = formatArgs;
+      exports.save = save;
+      exports.load = load2;
+      exports.useColors = useColors;
+      exports.storage = typeof chrome != "undefined" && typeof chrome.storage != "undefined" ? chrome.storage.local : localstorage();
+      exports.colors = [
+        "lightseagreen",
+        "forestgreen",
+        "goldenrod",
+        "dodgerblue",
+        "darkorchid",
+        "crimson"
+      ];
+      function useColors() {
+        if (typeof window !== "undefined" && window.process && window.process.type === "renderer") {
+          return true;
+        }
+        return typeof document !== "undefined" && document.documentElement && document.documentElement.style && document.documentElement.style.WebkitAppearance || typeof window !== "undefined" && window.console && (window.console.firebug || window.console.exception && window.console.table) || typeof navigator !== "undefined" && navigator.userAgent && navigator.userAgent.toLowerCase().match(/firefox\/(\d+)/) && parseInt(RegExp.$1, 10) >= 31 || typeof navigator !== "undefined" && navigator.userAgent && navigator.userAgent.toLowerCase().match(/applewebkit\/(\d+)/);
+      }
+      exports.formatters.j = function(v) {
+        try {
+          return JSON.stringify(v);
+        } catch (err) {
+          return "[UnexpectedJSONParseError]: " + err.message;
+        }
+      };
+      function formatArgs(args) {
+        var useColors2 = this.useColors;
+        args[0] = (useColors2 ? "%c" : "") + this.namespace + (useColors2 ? " %c" : " ") + args[0] + (useColors2 ? "%c " : " ") + "+" + exports.humanize(this.diff);
+        if (!useColors2)
+          return;
+        var c = "color: " + this.color;
+        args.splice(1, 0, c, "color: inherit");
+        var index = 0;
+        var lastC = 0;
+        args[0].replace(/%[a-zA-Z%]/g, function(match) {
+          if (match === "%%")
+            return;
+          index++;
+          if (match === "%c") {
+            lastC = index;
+          }
+        });
+        args.splice(lastC, 0, c);
+      }
+      function log() {
+        return typeof console === "object" && console.log && Function.prototype.apply.call(console.log, console, arguments);
+      }
+      function save(namespaces) {
+        try {
+          if (namespaces == null) {
+            exports.storage.removeItem("debug");
+          } else {
+            exports.storage.debug = namespaces;
+          }
+        } catch (e2) {
+        }
+      }
+      function load2() {
+        var r2;
+        try {
+          r2 = exports.storage.debug;
+        } catch (e2) {
+        }
+        if (!r2 && typeof process !== "undefined" && "env" in process) {
+          r2 = process.env.DEBUG;
+        }
+        return r2;
+      }
+      exports.enable(load2());
+      function localstorage() {
+        try {
+          return window.localStorage;
+        } catch (e2) {
+        }
+      }
+    })(browser, browser.exports);
+    node = { exports: {} };
+    (function(module2, exports) {
+      var tty = import_tty.default;
+      var util = import_util.default;
+      exports = module2.exports = debug.exports;
+      exports.init = init2;
+      exports.log = log;
+      exports.formatArgs = formatArgs;
+      exports.save = save;
+      exports.load = load2;
+      exports.useColors = useColors;
+      exports.colors = [6, 2, 3, 4, 5, 1];
+      exports.inspectOpts = Object.keys(process.env).filter(function(key) {
+        return /^debug_/i.test(key);
+      }).reduce(function(obj, key) {
+        var prop = key.substring(6).toLowerCase().replace(/_([a-z])/g, function(_, k) {
+          return k.toUpperCase();
+        });
+        var val = process.env[key];
+        if (/^(yes|on|true|enabled)$/i.test(val))
+          val = true;
+        else if (/^(no|off|false|disabled)$/i.test(val))
+          val = false;
+        else if (val === "null")
+          val = null;
+        else
+          val = Number(val);
+        obj[prop] = val;
+        return obj;
+      }, {});
+      var fd = parseInt(process.env.DEBUG_FD, 10) || 2;
+      if (fd !== 1 && fd !== 2) {
+        util.deprecate(function() {
+        }, "except for stderr(2) and stdout(1), any other usage of DEBUG_FD is deprecated. Override debug.log if you want to use a different log function (https://git.io/debug_fd)")();
+      }
+      var stream = fd === 1 ? process.stdout : fd === 2 ? process.stderr : createWritableStdioStream(fd);
+      function useColors() {
+        return "colors" in exports.inspectOpts ? Boolean(exports.inspectOpts.colors) : tty.isatty(fd);
+      }
+      exports.formatters.o = function(v) {
+        this.inspectOpts.colors = this.useColors;
+        return util.inspect(v, this.inspectOpts).split("\n").map(function(str) {
+          return str.trim();
+        }).join(" ");
+      };
+      exports.formatters.O = function(v) {
+        this.inspectOpts.colors = this.useColors;
+        return util.inspect(v, this.inspectOpts);
+      };
+      function formatArgs(args) {
+        var name = this.namespace;
+        var useColors2 = this.useColors;
+        if (useColors2) {
+          var c = this.color;
+          var prefix = "  [3" + c + ";1m" + name + " [0m";
+          args[0] = prefix + args[0].split("\n").join("\n" + prefix);
+          args.push("[3" + c + "m+" + exports.humanize(this.diff) + "[0m");
+        } else {
+          args[0] = new Date().toUTCString() + " " + name + " " + args[0];
+        }
+      }
+      function log() {
+        return stream.write(util.format.apply(util, arguments) + "\n");
+      }
+      function save(namespaces) {
+        if (namespaces == null) {
+          delete process.env.DEBUG;
+        } else {
+          process.env.DEBUG = namespaces;
+        }
+      }
+      function load2() {
+        return process.env.DEBUG;
+      }
+      function createWritableStdioStream(fd2) {
+        var stream2;
+        var tty_wrap = process.binding("tty_wrap");
+        switch (tty_wrap.guessHandleType(fd2)) {
+          case "TTY":
+            stream2 = new tty.WriteStream(fd2);
+            stream2._type = "tty";
+            if (stream2._handle && stream2._handle.unref) {
+              stream2._handle.unref();
+            }
+            break;
+          case "FILE":
+            var fs = import_fs.default;
+            stream2 = new fs.SyncWriteStream(fd2, { autoClose: false });
+            stream2._type = "fs";
+            break;
+          case "PIPE":
+          case "TCP":
+            var net = import_net3.default;
+            stream2 = new net.Socket({
+              fd: fd2,
+              readable: false,
+              writable: true
+            });
+            stream2.readable = false;
+            stream2.read = null;
+            stream2._type = "pipe";
+            if (stream2._handle && stream2._handle.unref) {
+              stream2._handle.unref();
+            }
+            break;
+          default:
+            throw new Error("Implement me. Unknown stream file type!");
+        }
+        stream2.fd = fd2;
+        stream2._isStdio = true;
+        return stream2;
+      }
+      function init2(debug2) {
+        debug2.inspectOpts = {};
+        var keys = Object.keys(exports.inspectOpts);
+        for (var i2 = 0; i2 < keys.length; i2++) {
+          debug2.inspectOpts[keys[i2]] = exports.inspectOpts[keys[i2]];
+        }
+      }
+      exports.enable(load2());
+    })(node, node.exports);
+    if (typeof process !== "undefined" && process.type === "renderer") {
+      src.exports = browser.exports;
+    } else {
+      src.exports = node.exports;
+    }
+    functionNames = { exports: {} };
+    (function(module2, exports) {
+      Object.defineProperty(exports, "__esModule", {
+        value: true
+      });
+      exports.default = ["cueVideoById", "loadVideoById", "cueVideoByUrl", "loadVideoByUrl", "playVideo", "pauseVideo", "stopVideo", "getVideoLoadedFraction", "cuePlaylist", "loadPlaylist", "nextVideo", "previousVideo", "playVideoAt", "setShuffle", "setLoop", "getPlaylist", "getPlaylistIndex", "setOption", "mute", "unMute", "isMuted", "setVolume", "getVolume", "seekTo", "getPlayerState", "getPlaybackRate", "setPlaybackRate", "getAvailablePlaybackRates", "getPlaybackQuality", "setPlaybackQuality", "getAvailableQualityLevels", "getCurrentTime", "getDuration", "removeEventListener", "getVideoUrl", "getVideoEmbedCode", "getOptions", "getOption", "addEventListener", "destroy", "setSize", "getIframe"];
+      module2.exports = exports["default"];
+    })(functionNames, functionNames.exports);
+    eventNames = { exports: {} };
+    (function(module2, exports) {
+      Object.defineProperty(exports, "__esModule", {
+        value: true
+      });
+      exports.default = ["ready", "stateChange", "playbackQualityChange", "playbackRateChange", "error", "apiChange", "volumeChange"];
+      module2.exports = exports["default"];
+    })(eventNames, eventNames.exports);
+    FunctionStateMap = { exports: {} };
+    PlayerStates = { exports: {} };
+    (function(module2, exports) {
+      Object.defineProperty(exports, "__esModule", {
+        value: true
+      });
+      exports.default = {
+        BUFFERING: 3,
+        ENDED: 0,
+        PAUSED: 2,
+        PLAYING: 1,
+        UNSTARTED: -1,
+        VIDEO_CUED: 5
+      };
+      module2.exports = exports["default"];
+    })(PlayerStates, PlayerStates.exports);
+    (function(module2, exports) {
+      Object.defineProperty(exports, "__esModule", {
+        value: true
+      });
+      var _PlayerStates = PlayerStates.exports;
+      var _PlayerStates2 = _interopRequireDefault(_PlayerStates);
+      function _interopRequireDefault(obj) {
+        return obj && obj.__esModule ? obj : { default: obj };
+      }
+      exports.default = {
+        pauseVideo: {
+          acceptableStates: [_PlayerStates2.default.ENDED, _PlayerStates2.default.PAUSED],
+          stateChangeRequired: false
+        },
+        playVideo: {
+          acceptableStates: [_PlayerStates2.default.ENDED, _PlayerStates2.default.PLAYING],
+          stateChangeRequired: false
+        },
+        seekTo: {
+          acceptableStates: [_PlayerStates2.default.ENDED, _PlayerStates2.default.PLAYING, _PlayerStates2.default.PAUSED],
+          stateChangeRequired: true,
+          timeout: 3e3
+        }
+      };
+      module2.exports = exports["default"];
+    })(FunctionStateMap, FunctionStateMap.exports);
+    (function(module2, exports) {
+      Object.defineProperty(exports, "__esModule", {
+        value: true
+      });
+      var _debug = src.exports;
+      var _debug2 = _interopRequireDefault(_debug);
+      var _functionNames = functionNames.exports;
+      var _functionNames2 = _interopRequireDefault(_functionNames);
+      var _eventNames = eventNames.exports;
+      var _eventNames2 = _interopRequireDefault(_eventNames);
+      var _FunctionStateMap = FunctionStateMap.exports;
+      var _FunctionStateMap2 = _interopRequireDefault(_FunctionStateMap);
+      function _interopRequireDefault(obj) {
+        return obj && obj.__esModule ? obj : { default: obj };
+      }
+      var debug2 = (0, _debug2.default)("youtube-player");
+      var YouTubePlayer2 = {};
+      YouTubePlayer2.proxyEvents = function(emitter) {
+        var events = {};
+        var _loop = function _loop2(eventName2) {
+          var onEventName = "on" + eventName2.slice(0, 1).toUpperCase() + eventName2.slice(1);
+          events[onEventName] = function(event) {
+            debug2('event "%s"', onEventName, event);
+            emitter.trigger(eventName2, event);
+          };
+        };
+        var _iteratorNormalCompletion = true;
+        var _didIteratorError = false;
+        var _iteratorError = void 0;
+        try {
+          for (var _iterator = _eventNames2.default[Symbol.iterator](), _step; !(_iteratorNormalCompletion = (_step = _iterator.next()).done); _iteratorNormalCompletion = true) {
+            var eventName = _step.value;
+            _loop(eventName);
+          }
+        } catch (err) {
+          _didIteratorError = true;
+          _iteratorError = err;
+        } finally {
+          try {
+            if (!_iteratorNormalCompletion && _iterator.return) {
+              _iterator.return();
+            }
+          } finally {
+            if (_didIteratorError) {
+              throw _iteratorError;
+            }
+          }
+        }
+        return events;
+      };
+      YouTubePlayer2.promisifyPlayer = function(playerAPIReady) {
+        var strictState = arguments.length > 1 && arguments[1] !== void 0 ? arguments[1] : false;
+        var functions = {};
+        var _loop2 = function _loop22(functionName2) {
+          if (strictState && _FunctionStateMap2.default[functionName2]) {
+            functions[functionName2] = function() {
+              for (var _len = arguments.length, args = Array(_len), _key = 0; _key < _len; _key++) {
+                args[_key] = arguments[_key];
+              }
+              return playerAPIReady.then(function(player) {
+                var stateInfo = _FunctionStateMap2.default[functionName2];
+                var playerState = player.getPlayerState();
+                var value = player[functionName2].apply(player, args);
+                if (stateInfo.stateChangeRequired || Array.isArray(stateInfo.acceptableStates) && stateInfo.acceptableStates.indexOf(playerState) === -1) {
+                  return new Promise(function(resolve2) {
+                    var onPlayerStateChange = function onPlayerStateChange2() {
+                      var playerStateAfterChange = player.getPlayerState();
+                      var timeout = void 0;
+                      if (typeof stateInfo.timeout === "number") {
+                        timeout = setTimeout(function() {
+                          player.removeEventListener("onStateChange", onPlayerStateChange2);
+                          resolve2();
+                        }, stateInfo.timeout);
+                      }
+                      if (Array.isArray(stateInfo.acceptableStates) && stateInfo.acceptableStates.indexOf(playerStateAfterChange) !== -1) {
+                        player.removeEventListener("onStateChange", onPlayerStateChange2);
+                        clearTimeout(timeout);
+                        resolve2();
+                      }
+                    };
+                    player.addEventListener("onStateChange", onPlayerStateChange);
+                  }).then(function() {
+                    return value;
+                  });
+                }
+                return value;
+              });
+            };
+          } else {
+            functions[functionName2] = function() {
+              for (var _len2 = arguments.length, args = Array(_len2), _key2 = 0; _key2 < _len2; _key2++) {
+                args[_key2] = arguments[_key2];
+              }
+              return playerAPIReady.then(function(player) {
+                return player[functionName2].apply(player, args);
+              });
+            };
+          }
+        };
+        var _iteratorNormalCompletion2 = true;
+        var _didIteratorError2 = false;
+        var _iteratorError2 = void 0;
+        try {
+          for (var _iterator2 = _functionNames2.default[Symbol.iterator](), _step2; !(_iteratorNormalCompletion2 = (_step2 = _iterator2.next()).done); _iteratorNormalCompletion2 = true) {
+            var functionName = _step2.value;
+            _loop2(functionName);
+          }
+        } catch (err) {
+          _didIteratorError2 = true;
+          _iteratorError2 = err;
+        } finally {
+          try {
+            if (!_iteratorNormalCompletion2 && _iterator2.return) {
+              _iterator2.return();
+            }
+          } finally {
+            if (_didIteratorError2) {
+              throw _iteratorError2;
+            }
+          }
+        }
+        return functions;
+      };
+      exports.default = YouTubePlayer2;
+      module2.exports = exports["default"];
+    })(YouTubePlayer, YouTubePlayer.exports);
+    (function(module2, exports) {
+      Object.defineProperty(exports, "__esModule", {
+        value: true
+      });
+      var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function(obj) {
+        return typeof obj;
+      } : function(obj) {
+        return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj;
+      };
+      var _sister = sister;
+      var _sister2 = _interopRequireDefault(_sister);
+      var _loadYouTubeIframeApi = loadYouTubeIframeApi.exports;
+      var _loadYouTubeIframeApi2 = _interopRequireDefault(_loadYouTubeIframeApi);
+      var _YouTubePlayer = YouTubePlayer.exports;
+      var _YouTubePlayer2 = _interopRequireDefault(_YouTubePlayer);
+      function _interopRequireDefault(obj) {
+        return obj && obj.__esModule ? obj : { default: obj };
+      }
+      var youtubeIframeAPI = void 0;
+      exports.default = function(maybeElementId) {
+        var options2 = arguments.length > 1 && arguments[1] !== void 0 ? arguments[1] : {};
+        var strictState = arguments.length > 2 && arguments[2] !== void 0 ? arguments[2] : false;
+        var emitter = (0, _sister2.default)();
+        if (!youtubeIframeAPI) {
+          youtubeIframeAPI = (0, _loadYouTubeIframeApi2.default)(emitter);
+        }
+        if (options2.events) {
+          throw new Error("Event handlers cannot be overwritten.");
+        }
+        if (typeof maybeElementId === "string" && !document.getElementById(maybeElementId)) {
+          throw new Error('Element "' + maybeElementId + '" does not exist.');
+        }
+        options2.events = _YouTubePlayer2.default.proxyEvents(emitter);
+        var playerAPIReady = new Promise(function(resolve2) {
+          if ((typeof maybeElementId === "undefined" ? "undefined" : _typeof(maybeElementId)) === "object" && maybeElementId.playVideo instanceof Function) {
+            var player = maybeElementId;
+            resolve2(player);
+          } else {
+            youtubeIframeAPI.then(function(YT) {
+              var player2 = new YT.Player(maybeElementId, options2);
+              emitter.on("ready", function() {
+                resolve2(player2);
+              });
+              return null;
+            });
+          }
+        });
+        var playerApi = _YouTubePlayer2.default.promisifyPlayer(playerAPIReady, strictState);
+        playerApi.on = emitter.on;
+        playerApi.off = emitter.off;
+        return playerApi;
+      };
+      module2.exports = exports["default"];
+    })(dist, dist.exports);
+    FaPlay = create_ssr_component(($$result, $$props, $$bindings, slots) => {
+      return `${validate_component(IconBase, "IconBase").$$render($$result, Object.assign({ viewBox: "0 0 448 512" }, $$props), {}, {
+        default: () => `<path d="${"M424.4 214.7L72.4 6.6C43.8-10.3 0 6.1 0 47.9V464c0 37.5 40.7 60.1 72.4 41.3l352-208c31.4-18.5 31.5-64.1 0-82.6z"}"></path>`
+      })}`;
+    });
+    css$12 = {
+      code: ".container.svelte-15zz5vq.svelte-15zz5vq{position:relative}.container.svelte-15zz5vq img.svelte-15zz5vq{width:100%;border-radius:10px}.overlay.svelte-15zz5vq.svelte-15zz5vq{position:absolute;top:0;left:0;width:100%;height:100%;display:flex;justify-content:center;align-items:center;z-index:5;cursor:pointer;transition:all ease-out 0.5s;border-radius:10px}.overlay.svelte-15zz5vq.svelte-15zz5vq:hover{background-color:rgba(128, 128, 128, 0.4)}.icon.svelte-15zz5vq.svelte-15zz5vq{width:3rem;color:white}",
+      map: null
+    };
+    Youtube_card = create_ssr_component(($$result, $$props, $$bindings, slots) => {
+      let { imagePath = "" } = $$props;
+      let { imageAlt = "" } = $$props;
+      let { youtubeId = "" } = $$props;
+      if ($$props.imagePath === void 0 && $$bindings.imagePath && imagePath !== void 0)
+        $$bindings.imagePath(imagePath);
+      if ($$props.imageAlt === void 0 && $$bindings.imageAlt && imageAlt !== void 0)
+        $$bindings.imageAlt(imageAlt);
+      if ($$props.youtubeId === void 0 && $$bindings.youtubeId && youtubeId !== void 0)
+        $$bindings.youtubeId(youtubeId);
+      $$result.css.add(css$12);
+      return `<div class="${"container svelte-15zz5vq"}"><img${add_attribute("src", imagePath, 0)}${add_attribute("alt", imageAlt, 0)} class="${"svelte-15zz5vq"}">
+	<div class="${"overlay svelte-15zz5vq"}"><span class="${"icon svelte-15zz5vq"}">${validate_component(FaPlay, "FaPlay").$$render($$result, {}, {}, {})}</span></div></div>
+${``}`;
+    });
+    css4 = {
+      code: ".container.svelte-1lqyoss{display:flex;flex-direction:column;justify-content:center;align-content:center;align-items:top;padding:2rem 2rem}@media(min-width: 992px){.container.svelte-1lqyoss{flex-direction:row}}@media(min-width: 2000px){.container.svelte-1lqyoss{flex-direction:column;align-items:center}}.about-text.svelte-1lqyoss{flex:1;text-align:justify;font-size:large;max-width:1000px;margin-bottom:3rem}@media(min-width: 992px){.about-text.svelte-1lqyoss{margin:0 1rem 0 0}}.about-video.svelte-1lqyoss{flex:1;cursor:pointer}@media(min-width: 992px){.about-video.svelte-1lqyoss{max-width:50%;margin:0 0 0 1rem}}@media(min-width: 2000px){.about-video.svelte-1lqyoss{width:1000px;margin:2rem 0 0 0}}",
+      map: null
+    };
+    Hero = create_ssr_component(($$result, $$props, $$bindings, slots) => {
+      $$result.css.add(css4);
+      return `<div class="${"container svelte-1lqyoss"}"><div class="${"about-text svelte-1lqyoss"}">${validate_component(Abouttext, "Abouttext").$$render($$result, {}, {}, {})}</div>
+  <div class="${"about-video svelte-1lqyoss"}">${validate_component(Youtube_card, "YoutubeCard").$$render($$result, {
+        imagePath: "/images/posters/portada-la-vida-es-un-viaje.jpg",
+        imageAlt: "Youtube Slide Opener - La vida es un viaje",
+        youtubeId: "m17_nb2weMU"
+      }, {}, {})}</div>
 </div>`;
     });
     Routes = create_ssr_component(($$result, $$props, $$bindings, slots) => {
@@ -11540,6 +12644,7 @@ var init_index_c484a2d0 = __esm({
       return `${$$result.head += `${$$result.title = `<title>Home Page</title>`, ""}`, ""}
 
 	${validate_component(Video_opening, "VideoOpening").$$render($$result, {}, {}, {})}
+	${validate_component(Hero, "Hero").$$render($$result, {}, {}, {})}
 
 
 `;
@@ -11547,23 +12652,23 @@ var init_index_c484a2d0 = __esm({
   }
 });
 
-// .svelte-kit/output/server/chunks/index-201daf27.js
-var index_201daf27_exports = {};
-__export(index_201daf27_exports, {
+// .svelte-kit/output/server/chunks/index-a8d40bd6.js
+var index_a8d40bd6_exports = {};
+__export(index_a8d40bd6_exports, {
   default: () => Destinations
 });
-var css4, Destinations;
-var init_index_201daf27 = __esm({
-  ".svelte-kit/output/server/chunks/index-201daf27.js"() {
+var css5, Destinations;
+var init_index_a8d40bd6 = __esm({
+  ".svelte-kit/output/server/chunks/index-a8d40bd6.js"() {
     init_shims();
-    init_app_87c6be8d();
+    init_app_f50bec29();
     init_ssr();
-    css4 = {
+    css5 = {
       code: ".temp.svelte-3k3ro4{height:90vh;display:flex;justify-content:center;align-items:center}",
       map: null
     };
     Destinations = create_ssr_component(($$result, $$props, $$bindings, slots) => {
-      $$result.css.add(css4);
+      $$result.css.add(css5);
       return `${$$result.head += `${$$result.title = `<title>All Destinations</title>`, ""}`, ""}
 
 <div class="${"temp svelte-3k3ro4"}"><h1>All Destinations Page</h1>
@@ -11572,16 +12677,16 @@ var init_index_201daf27 = __esm({
   }
 });
 
-// .svelte-kit/output/server/chunks/_country_-7a137f3c.js
-var country_7a137f3c_exports = {};
-__export(country_7a137f3c_exports, {
+// .svelte-kit/output/server/chunks/_country_-b7259ca4.js
+var country_b7259ca4_exports = {};
+__export(country_b7259ca4_exports, {
   default: () => U5Bcountryu5D
 });
 var U5Bcountryu5D;
-var init_country_7a137f3c = __esm({
-  ".svelte-kit/output/server/chunks/_country_-7a137f3c.js"() {
+var init_country_b7259ca4 = __esm({
+  ".svelte-kit/output/server/chunks/_country_-b7259ca4.js"() {
     init_shims();
-    init_app_87c6be8d();
+    init_app_f50bec29();
     init_ssr();
     U5Bcountryu5D = create_ssr_component(($$result, $$props, $$bindings, slots) => {
       return ``;
@@ -11589,16 +12694,16 @@ var init_country_7a137f3c = __esm({
   }
 });
 
-// .svelte-kit/output/server/chunks/_...slug_-6f3b44aa.js
-var slug_6f3b44aa_exports = {};
-__export(slug_6f3b44aa_exports, {
+// .svelte-kit/output/server/chunks/_...slug_-da969646.js
+var slug_da969646_exports = {};
+__export(slug_da969646_exports, {
   default: () => U5B_slugu5D
 });
 var U5B_slugu5D;
-var init_slug_6f3b44aa = __esm({
-  ".svelte-kit/output/server/chunks/_...slug_-6f3b44aa.js"() {
+var init_slug_da969646 = __esm({
+  ".svelte-kit/output/server/chunks/_...slug_-da969646.js"() {
     init_shims();
-    init_app_87c6be8d();
+    init_app_f50bec29();
     init_ssr();
     U5B_slugu5D = create_ssr_component(($$result, $$props, $$bindings, slots) => {
       return ``;
@@ -11606,18 +12711,18 @@ var init_slug_6f3b44aa = __esm({
   }
 });
 
-// .svelte-kit/output/server/chunks/contact-6b8f0b7c.js
-var contact_6b8f0b7c_exports = {};
-__export(contact_6b8f0b7c_exports, {
+// .svelte-kit/output/server/chunks/contact-73f5d801.js
+var contact_73f5d801_exports = {};
+__export(contact_73f5d801_exports, {
   default: () => Contact
 });
-var css5, Contact;
-var init_contact_6b8f0b7c = __esm({
-  ".svelte-kit/output/server/chunks/contact-6b8f0b7c.js"() {
+var css6, Contact;
+var init_contact_73f5d801 = __esm({
+  ".svelte-kit/output/server/chunks/contact-73f5d801.js"() {
     init_shims();
-    init_app_87c6be8d();
+    init_app_f50bec29();
     init_ssr();
-    css5 = {
+    css6 = {
       code: ".temp.svelte-3k3ro4{height:90vh;display:flex;justify-content:center;align-items:center}",
       map: null
     };
@@ -11625,7 +12730,7 @@ var init_contact_6b8f0b7c = __esm({
       const prerender = true;
       if ($$props.prerender === void 0 && $$bindings.prerender && prerender !== void 0)
         $$bindings.prerender(prerender);
-      $$result.css.add(css5);
+      $$result.css.add(css6);
       return `${$$result.head += `${$$result.title = `<title>Contact Page</title>`, ""}`, ""}
 
 <div class="${"temp svelte-3k3ro4"}"><h1>Contact Page</h1>
@@ -11634,18 +12739,18 @@ var init_contact_6b8f0b7c = __esm({
   }
 });
 
-// .svelte-kit/output/server/chunks/shop-5cb9d275.js
-var shop_5cb9d275_exports = {};
-__export(shop_5cb9d275_exports, {
+// .svelte-kit/output/server/chunks/shop-0c64ff45.js
+var shop_0c64ff45_exports = {};
+__export(shop_0c64ff45_exports, {
   default: () => Shop
 });
-var css6, Shop;
-var init_shop_5cb9d275 = __esm({
-  ".svelte-kit/output/server/chunks/shop-5cb9d275.js"() {
+var css7, Shop;
+var init_shop_0c64ff45 = __esm({
+  ".svelte-kit/output/server/chunks/shop-0c64ff45.js"() {
     init_shims();
-    init_app_87c6be8d();
+    init_app_f50bec29();
     init_ssr();
-    css6 = {
+    css7 = {
       code: ".temp.svelte-3k3ro4{height:90vh;display:flex;justify-content:center;align-items:center}",
       map: null
     };
@@ -11653,7 +12758,7 @@ var init_shop_5cb9d275 = __esm({
       const prerender = true;
       if ($$props.prerender === void 0 && $$bindings.prerender && prerender !== void 0)
         $$bindings.prerender(prerender);
-      $$result.css.add(css6);
+      $$result.css.add(css7);
       return `${$$result.head += `${$$result.title = `<title>Shop Page</title>`, ""}`, ""}
 
 <div class="${"temp svelte-3k3ro4"}"><h1>Shop Page</h1>
@@ -11662,8 +12767,13 @@ var init_shop_5cb9d275 = __esm({
   }
 });
 
-// .svelte-kit/output/server/chunks/app-87c6be8d.js
+// .svelte-kit/output/server/chunks/app-f50bec29.js
 function noop3() {
+}
+function assign(tar, src2) {
+  for (const k in src2)
+    tar[k] = src2[k];
+  return tar;
 }
 function run(fn) {
   return fn();
@@ -11674,12 +12784,43 @@ function blank_object() {
 function run_all(fns) {
   fns.forEach(run);
 }
+function safe_not_equal2(a, b) {
+  return a != a ? b == b : a !== b || (a && typeof a === "object" || typeof a === "function");
+}
 function subscribe(store, ...callbacks) {
   if (store == null) {
     return noop3;
   }
   const unsub = store.subscribe(...callbacks);
   return unsub.unsubscribe ? () => unsub.unsubscribe() : unsub;
+}
+function run_tasks(now2) {
+  tasks.forEach((task) => {
+    if (!task.c(now2)) {
+      tasks.delete(task);
+      task.f();
+    }
+  });
+  if (tasks.size !== 0)
+    raf(run_tasks);
+}
+function loop(callback) {
+  let task;
+  if (tasks.size === 0)
+    raf(run_tasks);
+  return {
+    promise: new Promise((fulfill) => {
+      tasks.add(task = { c: callback, f: fulfill });
+    }),
+    abort() {
+      tasks.delete(task);
+    }
+  };
+}
+function custom_event(type, detail, bubbles = false) {
+  const e2 = document.createEvent("CustomEvent");
+  e2.initCustomEvent(type, bubbles, false, detail);
+  return e2;
 }
 function set_current_component(component) {
   current_component = component;
@@ -11688,6 +12829,18 @@ function get_current_component() {
   if (!current_component)
     throw new Error("Function called outside component initialization");
   return current_component;
+}
+function createEventDispatcher() {
+  const component = get_current_component();
+  return (type, detail) => {
+    const callbacks = component.$$.callbacks[type];
+    if (callbacks) {
+      const event = custom_event(type, detail);
+      callbacks.slice().forEach((fn) => {
+        fn.call(component, event);
+      });
+    }
+  };
 }
 function setContext(key, context) {
   get_current_component().$$.context.set(key, context);
@@ -11761,9 +12914,9 @@ function init(settings = default_settings) {
     amp: false,
     dev: false,
     entry: {
-      file: assets + "/_app/start-64df1616.js",
+      file: assets + "/_app/start-479ad7d2.js",
       css: [assets + "/_app/assets/start-61d1577b.css", assets + "/_app/assets/vendor-86f8c920.css"],
-      js: [assets + "/_app/start-64df1616.js", assets + "/_app/chunks/vendor-2a3b0db6.js"]
+      js: [assets + "/_app/start-479ad7d2.js", assets + "/_app/chunks/vendor-7c7890d5.js"]
     },
     fetched: void 0,
     floc: false,
@@ -11806,11 +12959,16 @@ function render(request, {
   const host = request.headers["host"];
   return respond({ ...request, host }, options, { prerender });
 }
-var current_component, escaped2, missing_component, on_destroy, css7, Root, base, assets, user_hooks, template, options, default_settings, d, empty, manifest, get_hooks, module_lookup, metadata_lookup;
-var init_app_87c6be8d = __esm({
-  ".svelte-kit/output/server/chunks/app-87c6be8d.js"() {
+var identity, is_client, now, raf, tasks, current_component, escaped2, missing_component, on_destroy, css8, Root, base, assets, user_hooks, template, options, default_settings, d2, empty, manifest, get_hooks, module_lookup, metadata_lookup;
+var init_app_f50bec29 = __esm({
+  ".svelte-kit/output/server/chunks/app-f50bec29.js"() {
     init_shims();
     init_ssr();
+    identity = (x2) => x2;
+    is_client = typeof window !== "undefined";
+    now = is_client ? () => window.performance.now() : () => Date.now();
+    raf = is_client ? (cb) => requestAnimationFrame(cb) : noop3;
+    tasks = new Set();
     Promise.resolve();
     escaped2 = {
       '"': "&quot;",
@@ -11822,7 +12980,7 @@ var init_app_87c6be8d = __esm({
     missing_component = {
       $$render: () => ""
     };
-    css7 = {
+    css8 = {
       code: "#svelte-announcer.svelte-1j55zn5{position:absolute;left:0;top:0;clip:rect(0 0 0 0);clip-path:inset(50%);overflow:hidden;white-space:nowrap;width:1px;height:1px}",
       map: null
     };
@@ -11847,7 +13005,7 @@ var init_app_87c6be8d = __esm({
         $$bindings.props_1(props_1);
       if ($$props.props_2 === void 0 && $$bindings.props_2 && props_2 !== void 0)
         $$bindings.props_2(props_2);
-      $$result.css.add(css7);
+      $$result.css.add(css8);
       {
         stores.page.set(page2);
       }
@@ -11871,10 +13029,10 @@ ${``}`;
     template = ({ head, body }) => '<!DOCTYPE html>\n<html lang="en">\n	<head>\n		<meta charset="utf-8" />\n		<meta name="description" content="" />\n		<link rel="icon" href="/favicon.png" />\n		<link\n			rel="stylesheet"\n			href="https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,300;0,400;0,700;1,400;1,700&display=swap"\n		/>\n		<meta name="viewport" content="width=device-width, initial-scale=1" />\n		' + head + '\n	</head>\n	<body>\n		<div id="svelte">' + body + "</div>\n	</body>\n</html>\n";
     options = null;
     default_settings = { paths: { "base": "", "assets": "" } };
-    d = (s3) => s3.replace(/%23/g, "#").replace(/%3[Bb]/g, ";").replace(/%2[Cc]/g, ",").replace(/%2[Ff]/g, "/").replace(/%3[Ff]/g, "?").replace(/%3[Aa]/g, ":").replace(/%40/g, "@").replace(/%26/g, "&").replace(/%3[Dd]/g, "=").replace(/%2[Bb]/g, "+").replace(/%24/g, "$");
+    d2 = (s4) => s4.replace(/%23/g, "#").replace(/%3[Bb]/g, ";").replace(/%2[Cc]/g, ",").replace(/%2[Ff]/g, "/").replace(/%3[Ff]/g, "?").replace(/%3[Aa]/g, ":").replace(/%40/g, "@").replace(/%26/g, "&").replace(/%3[Dd]/g, "=").replace(/%2[Bb]/g, "+").replace(/%24/g, "$");
     empty = () => ({});
     manifest = {
-      assets: [{ "file": "favicon.ico", "size": 11848, "type": "image/vnd.microsoft.icon" }, { "file": "favicon.png", "size": 1571, "type": "image/png" }, { "file": "videos/sinfronteras-intro-hd.mp4", "size": 50141660, "type": "video/mp4" }, { "file": "videos/sinfronteras-intro-hd.webm", "size": 31343435, "type": "video/webm" }],
+      assets: [{ "file": "favicon.ico", "size": 11848, "type": "image/vnd.microsoft.icon" }, { "file": "favicon.png", "size": 1571, "type": "image/png" }, { "file": "images/background/image4.jpg", "size": 44468, "type": "image/jpeg" }, { "file": "images/background/mapa-verde-small.jpg", "size": 44933, "type": "image/jpeg" }, { "file": "images/countries/cambodia/cambodia.jpg", "size": 77863, "type": "image/jpeg" }, { "file": "images/countries/cambodia/flag.png", "size": 24528, "type": "image/png" }, { "file": "images/countries/myanmar/flag.jpg", "size": 6027, "type": "image/jpeg" }, { "file": "images/countries/myanmar/myanmar.jpg", "size": 27367, "type": "image/jpeg" }, { "file": "images/countries/thailand/flag.png", "size": 608, "type": "image/png" }, { "file": "images/countries/thailand/thailand.jpg", "size": 56440, "type": "image/jpeg" }, { "file": "images/icons/android-chrome-192x192.png", "size": 31059, "type": "image/png" }, { "file": "images/icons/apple-touch-icon.png", "size": 20719, "type": "image/png" }, { "file": "images/icons/favicon-16x16.png", "size": 847, "type": "image/png" }, { "file": "images/icons/favicon-32x32.png", "size": 2456, "type": "image/png" }, { "file": "images/icons/maskable_icon.png", "size": 48526, "type": "image/png" }, { "file": "images/icons/maskable_icon_x128.png", "size": 14319, "type": "image/png" }, { "file": "images/icons/maskable_icon_x192.png", "size": 29355, "type": "image/png" }, { "file": "images/icons/maskable_icon_x48.png", "size": 2784, "type": "image/png" }, { "file": "images/icons/maskable_icon_x72.png", "size": 5378, "type": "image/png" }, { "file": "images/icons/maskable_icon_x96.png", "size": 8614, "type": "image/png" }, { "file": "images/icons/sinfronteras-128x128.png", "size": 17868, "type": "image/png" }, { "file": "images/icons/sinfronteras-144x144.png", "size": 20719, "type": "image/png" }, { "file": "images/icons/sinfronteras-152x152.png", "size": 22387, "type": "image/png" }, { "file": "images/icons/sinfronteras-16x16.png", "size": 847, "type": "image/png" }, { "file": "images/icons/sinfronteras-192x192.png", "size": 31059, "type": "image/png" }, { "file": "images/icons/sinfronteras-32x32.png", "size": 2456, "type": "image/png" }, { "file": "images/icons/sinfronteras-384x384.png", "size": 81530, "type": "image/png" }, { "file": "images/icons/sinfronteras-512x512.png", "size": 121296, "type": "image/png" }, { "file": "images/icons/sinfronteras-72x72.png", "size": 7694, "type": "image/png" }, { "file": "images/icons/sinfronteras-96x96.png", "size": 11928, "type": "image/png" }, { "file": "images/icons/touch-icon-ipad-retina.png", "size": 25907, "type": "image/png" }, { "file": "images/icons/touch-icon-ipad.png", "size": 22387, "type": "image/png" }, { "file": "images/icons/touch-icon-iphone-retina.png", "size": 28941, "type": "image/png" }, { "file": "images/icons/touch-icon-iphone.png", "size": 20719, "type": "image/png" }, { "file": "images/logo/logo_sinfronteras-417x150.png", "size": 18640, "type": "image/png" }, { "file": "images/logo/logo_sinfronteras-600x216.png", "size": 31477, "type": "image/png" }, { "file": "images/logo/victoralaluf.png", "size": 33970, "type": "image/png" }, { "file": "images/posters/portada-100-suscriptores.jpg", "size": 52453, "type": "image/jpeg" }, { "file": "images/posters/portada-angkor.jpg", "size": 66570, "type": "image/jpeg" }, { "file": "images/posters/portada-ayutthaya.jpg", "size": 60599, "type": "image/jpeg" }, { "file": "images/posters/portada-bagan.jpg", "size": 38018, "type": "image/jpeg" }, { "file": "images/posters/portada-bangkok.jpg", "size": 40927, "type": "image/jpeg" }, { "file": "images/posters/portada-chiang-mai.jpg", "size": 57504, "type": "image/jpeg" }, { "file": "images/posters/portada-enp.jpg", "size": 61542, "type": "image/jpeg" }, { "file": "images/posters/portada-hpa-an.jpg", "size": 62120, "type": "image/jpeg" }, { "file": "images/posters/portada-hsipaw.jpg", "size": 36525, "type": "image/jpeg" }, { "file": "images/posters/portada-kyaiktiyo.jpg", "size": 78816, "type": "image/jpeg" }, { "file": "images/posters/portada-la-vida-es-un-viaje.jpg", "size": 48250, "type": "image/jpeg" }, { "file": "images/posters/portada-lago-inle.jpg", "size": 52136, "type": "image/jpeg" }, { "file": "images/posters/portada-mandalay.jpg", "size": 43233, "type": "image/jpeg" }, { "file": "images/posters/portada-myanmar.jpg", "size": 55263, "type": "image/jpeg" }, { "file": "images/posters/portada-sukhothai.jpg", "size": 68693, "type": "image/jpeg" }, { "file": "images/posters/portada-udon-thani.jpg", "size": 60613, "type": "image/jpeg" }, { "file": "images/posters/portada-yangon-dia1.jpg", "size": 37640, "type": "image/jpeg" }, { "file": "images/posters/portada-yangon-dia2.jpg", "size": 47596, "type": "image/jpeg" }, { "file": "images/posters/portada-yangon-dia3.jpg", "size": 56343, "type": "image/jpeg" }, { "file": "images/slides/image1.jpg", "size": 630192, "type": "image/jpeg" }, { "file": "images/slides/image2.jpg", "size": 341038, "type": "image/jpeg" }, { "file": "images/slides/image3.jpg", "size": 325520, "type": "image/jpeg" }, { "file": "videos/sinfronteras-intro-hd.mp4", "size": 50141660, "type": "video/mp4" }, { "file": "videos/sinfronteras-intro-hd.webm", "size": 31343435, "type": "video/webm" }],
       layout: "src/routes/__layout.svelte",
       error: "src/routes/__error.svelte",
       routes: [
@@ -11895,14 +13053,14 @@ ${``}`;
         {
           type: "page",
           pattern: /^\/destinations\/([^/]+?)\/?$/,
-          params: (m2) => ({ country: d(m2[1]) }),
+          params: (m3) => ({ country: d2(m3[1]) }),
           a: ["src/routes/__layout.svelte", "src/routes/destinations/[country].svelte"],
           b: ["src/routes/__error.svelte"]
         },
         {
           type: "page",
           pattern: /^\/destinations(?:\/(.*))?\/?$/,
-          params: (m2) => ({ slug: d(m2[1] || "") }),
+          params: (m3) => ({ slug: d2(m3[1] || "") }),
           a: ["src/routes/__layout.svelte", "src/routes/destinations/[...slug].svelte"],
           b: ["src/routes/__error.svelte"]
         },
@@ -11922,9 +13080,9 @@ ${``}`;
         },
         {
           type: "endpoint",
-          pattern: /^\/api\/image-placeholders\.json$/,
+          pattern: /^\/api\/image-placeholders\/?$/,
           params: empty,
-          load: () => Promise.resolve().then(() => (init_image_placeholders_json_24421abb(), image_placeholders_json_24421abb_exports))
+          load: () => Promise.resolve().then(() => (init_image_placeholders_ed6236b5(), image_placeholders_ed6236b5_exports))
         }
       ]
     };
@@ -11935,16 +13093,16 @@ ${``}`;
       externalFetch: hooks.externalFetch || fetch
     });
     module_lookup = {
-      "src/routes/__layout.svelte": () => Promise.resolve().then(() => (init_layout_5ff31284(), layout_5ff31284_exports)),
-      "src/routes/__error.svelte": () => Promise.resolve().then(() => (init_error_bc64ff31(), error_bc64ff31_exports)),
-      "src/routes/index.svelte": () => Promise.resolve().then(() => (init_index_c484a2d0(), index_c484a2d0_exports)),
-      "src/routes/destinations/index.svelte": () => Promise.resolve().then(() => (init_index_201daf27(), index_201daf27_exports)),
-      "src/routes/destinations/[country].svelte": () => Promise.resolve().then(() => (init_country_7a137f3c(), country_7a137f3c_exports)),
-      "src/routes/destinations/[...slug].svelte": () => Promise.resolve().then(() => (init_slug_6f3b44aa(), slug_6f3b44aa_exports)),
-      "src/routes/contact.svelte": () => Promise.resolve().then(() => (init_contact_6b8f0b7c(), contact_6b8f0b7c_exports)),
-      "src/routes/shop.svelte": () => Promise.resolve().then(() => (init_shop_5cb9d275(), shop_5cb9d275_exports))
+      "src/routes/__layout.svelte": () => Promise.resolve().then(() => (init_layout_116b4e25(), layout_116b4e25_exports)),
+      "src/routes/__error.svelte": () => Promise.resolve().then(() => (init_error_190df1a4(), error_190df1a4_exports)),
+      "src/routes/index.svelte": () => Promise.resolve().then(() => (init_index_d0b7f88b(), index_d0b7f88b_exports)),
+      "src/routes/destinations/index.svelte": () => Promise.resolve().then(() => (init_index_a8d40bd6(), index_a8d40bd6_exports)),
+      "src/routes/destinations/[country].svelte": () => Promise.resolve().then(() => (init_country_b7259ca4(), country_b7259ca4_exports)),
+      "src/routes/destinations/[...slug].svelte": () => Promise.resolve().then(() => (init_slug_da969646(), slug_da969646_exports)),
+      "src/routes/contact.svelte": () => Promise.resolve().then(() => (init_contact_73f5d801(), contact_73f5d801_exports)),
+      "src/routes/shop.svelte": () => Promise.resolve().then(() => (init_shop_0c64ff45(), shop_0c64ff45_exports))
     };
-    metadata_lookup = { "src/routes/__layout.svelte": { "entry": "pages/__layout.svelte-d578601d.js", "css": ["assets/pages/__layout.svelte-860a3a25.css", "assets/vendor-86f8c920.css"], "js": ["pages/__layout.svelte-d578601d.js", "chunks/vendor-2a3b0db6.js"], "styles": [] }, "src/routes/__error.svelte": { "entry": "pages/__error.svelte-0e433f33.js", "css": ["assets/pages/__error.svelte-41a40c71.css", "assets/vendor-86f8c920.css"], "js": ["pages/__error.svelte-0e433f33.js", "chunks/vendor-2a3b0db6.js"], "styles": [] }, "src/routes/index.svelte": { "entry": "pages/index.svelte-64c3852b.js", "css": ["assets/pages/index.svelte-afacc290.css", "assets/vendor-86f8c920.css"], "js": ["pages/index.svelte-64c3852b.js", "chunks/vendor-2a3b0db6.js"], "styles": [] }, "src/routes/destinations/index.svelte": { "entry": "pages/destinations/index.svelte-da4f73c6.js", "css": ["assets/pages/contact.svelte-febf298f.css", "assets/vendor-86f8c920.css"], "js": ["pages/destinations/index.svelte-da4f73c6.js", "chunks/vendor-2a3b0db6.js"], "styles": [] }, "src/routes/destinations/[country].svelte": { "entry": "pages/destinations/_country_.svelte-c35a1aa3.js", "css": ["assets/vendor-86f8c920.css"], "js": ["pages/destinations/_country_.svelte-c35a1aa3.js", "chunks/vendor-2a3b0db6.js"], "styles": [] }, "src/routes/destinations/[...slug].svelte": { "entry": "pages/destinations/_...slug_.svelte-257c63f5.js", "css": ["assets/vendor-86f8c920.css"], "js": ["pages/destinations/_...slug_.svelte-257c63f5.js", "chunks/vendor-2a3b0db6.js"], "styles": [] }, "src/routes/contact.svelte": { "entry": "pages/contact.svelte-c5638ca6.js", "css": ["assets/pages/contact.svelte-febf298f.css", "assets/vendor-86f8c920.css"], "js": ["pages/contact.svelte-c5638ca6.js", "chunks/vendor-2a3b0db6.js"], "styles": [] }, "src/routes/shop.svelte": { "entry": "pages/shop.svelte-ea4cb815.js", "css": ["assets/pages/contact.svelte-febf298f.css", "assets/vendor-86f8c920.css"], "js": ["pages/shop.svelte-ea4cb815.js", "chunks/vendor-2a3b0db6.js"], "styles": [] } };
+    metadata_lookup = { "src/routes/__layout.svelte": { "entry": "pages/__layout.svelte-a6ea81e7.js", "css": ["assets/pages/__layout.svelte-555533ad.css", "assets/vendor-86f8c920.css"], "js": ["pages/__layout.svelte-a6ea81e7.js", "chunks/vendor-7c7890d5.js"], "styles": [] }, "src/routes/__error.svelte": { "entry": "pages/__error.svelte-99d38279.js", "css": ["assets/pages/__error.svelte-41a40c71.css", "assets/vendor-86f8c920.css"], "js": ["pages/__error.svelte-99d38279.js", "chunks/vendor-7c7890d5.js"], "styles": [] }, "src/routes/index.svelte": { "entry": "pages/index.svelte-e87987fb.js", "css": ["assets/pages/index.svelte-abeba07e.css", "assets/vendor-86f8c920.css"], "js": ["pages/index.svelte-e87987fb.js", "chunks/vendor-7c7890d5.js"], "styles": [] }, "src/routes/destinations/index.svelte": { "entry": "pages/destinations/index.svelte-c20e8b59.js", "css": ["assets/pages/shop.svelte-82a4e29a.css", "assets/vendor-86f8c920.css"], "js": ["pages/destinations/index.svelte-c20e8b59.js", "chunks/vendor-7c7890d5.js"], "styles": [] }, "src/routes/destinations/[country].svelte": { "entry": "pages/destinations/_country_.svelte-b6c45488.js", "css": ["assets/vendor-86f8c920.css"], "js": ["pages/destinations/_country_.svelte-b6c45488.js", "chunks/vendor-7c7890d5.js"], "styles": [] }, "src/routes/destinations/[...slug].svelte": { "entry": "pages/destinations/_...slug_.svelte-f1b971ad.js", "css": ["assets/vendor-86f8c920.css"], "js": ["pages/destinations/_...slug_.svelte-f1b971ad.js", "chunks/vendor-7c7890d5.js"], "styles": [] }, "src/routes/contact.svelte": { "entry": "pages/contact.svelte-2550cc41.js", "css": ["assets/pages/shop.svelte-82a4e29a.css", "assets/vendor-86f8c920.css"], "js": ["pages/contact.svelte-2550cc41.js", "chunks/vendor-7c7890d5.js"], "styles": [] }, "src/routes/shop.svelte": { "entry": "pages/shop.svelte-606e5436.js", "css": ["assets/pages/shop.svelte-82a4e29a.css", "assets/vendor-86f8c920.css"], "js": ["pages/shop.svelte-606e5436.js", "chunks/vendor-7c7890d5.js"], "styles": [] } };
   }
 });
 
@@ -11958,13 +13116,13 @@ init_shims();
 init_shims();
 function getRawBody(req) {
   return new Promise((fulfil, reject) => {
-    const h2 = req.headers;
-    if (!h2["content-type"]) {
+    const h3 = req.headers;
+    if (!h3["content-type"]) {
       return fulfil(null);
     }
     req.on("error", reject);
-    const length = Number(h2["content-length"]);
-    if (isNaN(length) && h2["transfer-encoding"] == null) {
+    const length = Number(h3["content-length"]);
+    if (isNaN(length) && h3["transfer-encoding"] == null) {
       return fulfil(null);
     }
     let data = new Uint8Array(length || 0);
@@ -11998,7 +13156,7 @@ function getRawBody(req) {
 // .svelte-kit/output/server/app.js
 init_shims();
 init_ssr();
-init_app_87c6be8d();
+init_app_f50bec29();
 
 // .svelte-kit/vercel/entry.js
 init();
@@ -12028,3 +13186,7 @@ var entry_default = async (req, res) => {
 0 && (module.exports = {});
 /*! fetch-blob. MIT License. Jimmy Wärting <https://jimmy.warting.se/opensource> */
 /*! formdata-polyfill. MIT License. Jimmy Wärting <https://jimmy.warting.se/opensource> */
+/**
+* @link https://github.com/gajus/sister for the canonical source repository
+* @license https://github.com/gajus/sister/blob/master/LICENSE BSD 3-Clause
+*/
