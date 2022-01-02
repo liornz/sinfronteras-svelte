@@ -10507,12 +10507,12 @@ var init_src = __esm({
   }
 });
 
-// .svelte-kit/output/server/chunks/IconBase-831e04a4.js
+// .svelte-kit/output/server/chunks/IconBase-61da3b5e.js
 var css, IconBase;
-var init_IconBase_831e04a4 = __esm({
-  ".svelte-kit/output/server/chunks/IconBase-831e04a4.js"() {
+var init_IconBase_61da3b5e = __esm({
+  ".svelte-kit/output/server/chunks/IconBase-61da3b5e.js"() {
     init_shims();
-    init_app_bfad93cc();
+    init_app_277676da();
     css = {
       code: "svg.svelte-c8tyih{stroke:currentColor;fill:currentColor;stroke-width:0;width:100%;height:auto;max-height:100%}",
       map: null
@@ -10530,9 +10530,9 @@ var init_IconBase_831e04a4 = __esm({
   }
 });
 
-// .svelte-kit/output/server/chunks/__layout-bfeeb691.js
-var layout_bfeeb691_exports = {};
-__export(layout_bfeeb691_exports, {
+// .svelte-kit/output/server/chunks/__layout-f3326b0e.js
+var layout_f3326b0e_exports = {};
+__export(layout_f3326b0e_exports, {
   default: () => _layout
 });
 function writable2(value, start = noop3) {
@@ -10677,12 +10677,12 @@ function tweened(value, defaults2 = {}) {
   };
 }
 var logo, css$9, Logo, subscriber_queue2, css$8, Menu_toggler, getStores, page, css$7, Navitems, Navbar, css$6, Header, css$5, Extended_logo, css$4, Menu_items, victorAlaluf, FaFacebookSquare, FaInstagram, FaYoutubeSquare, css$3, Social_media, css$2, Newsletter_registration, css$1, Footer, css2, _layout;
-var init_layout_bfeeb691 = __esm({
-  ".svelte-kit/output/server/chunks/__layout-bfeeb691.js"() {
+var init_layout_f3326b0e = __esm({
+  ".svelte-kit/output/server/chunks/__layout-f3326b0e.js"() {
     init_shims();
-    init_app_bfad93cc();
+    init_app_277676da();
     init_src();
-    init_IconBase_831e04a4();
+    init_IconBase_61da3b5e();
     init_ssr();
     logo = "/_app/assets/logo_sinfronteras-417x150-b8bed806.png";
     css$9 = {
@@ -10905,16 +10905,16 @@ ${validate_component(Footer, "Footer").$$render($$result, {}, {}, {})}`;
   }
 });
 
-// .svelte-kit/output/server/chunks/__error-2cf22c7e.js
-var error_2cf22c7e_exports = {};
-__export(error_2cf22c7e_exports, {
+// .svelte-kit/output/server/chunks/__error-0fab5dbf.js
+var error_0fab5dbf_exports = {};
+__export(error_0fab5dbf_exports, {
   default: () => _error
 });
 var css3, _error;
-var init_error_2cf22c7e = __esm({
-  ".svelte-kit/output/server/chunks/__error-2cf22c7e.js"() {
+var init_error_0fab5dbf = __esm({
+  ".svelte-kit/output/server/chunks/__error-0fab5dbf.js"() {
     init_shims();
-    init_app_bfad93cc();
+    init_app_277676da();
     init_ssr();
     css3 = {
       code: ".section.svelte-1mc67xs{text-align:center;margin:auto auto;display:flex;flex-direction:column;justify-content:center;align-items:center;margin-bottom:2rem;height:50vh}.title.svelte-1mc67xs{font-size:xx-large;margin:0.5rem 0}.subtitle.svelte-1mc67xs{font-size:large;margin:0.5rem 0 2rem}.button.svelte-1mc67xs{padding:0.5rem 2rem;color:white;background-color:#f79523}",
@@ -10930,9 +10930,9 @@ var init_error_2cf22c7e = __esm({
   }
 });
 
-// .svelte-kit/output/server/chunks/index-90304df6.js
-var index_90304df6_exports = {};
-__export(index_90304df6_exports, {
+// .svelte-kit/output/server/chunks/index-83f80bbb.js
+var index_83f80bbb_exports = {};
+__export(index_83f80bbb_exports, {
   default: () => Routes
 });
 function setAttributes(script, attrs) {
@@ -11036,15 +11036,15 @@ function plural(ms2, n, name) {
   return Math.ceil(ms2 / n) + " " + name + "s";
 }
 var import_tty, import_util, import_fs5, import_net3, css$22, Video_opening, Abouttext, dist, Sister, sister, loadYouTubeIframeApi, loadScript, YouTubePlayer, src, browser, debug, s3, m2, h2, d, y, ms, node, functionNames, eventNames, FunctionStateMap, PlayerStates, FaPlay, css$12, Youtube_card, css4, Hero, Routes;
-var init_index_90304df6 = __esm({
-  ".svelte-kit/output/server/chunks/index-90304df6.js"() {
+var init_index_83f80bbb = __esm({
+  ".svelte-kit/output/server/chunks/index-83f80bbb.js"() {
     init_shims();
-    init_app_bfad93cc();
+    init_app_277676da();
     import_tty = __toModule(require("tty"));
     import_util = __toModule(require("util"));
     import_fs5 = __toModule(require("fs"));
     import_net3 = __toModule(require("net"));
-    init_IconBase_831e04a4();
+    init_IconBase_61da3b5e();
     init_ssr();
     css$22 = {
       code: ".container.svelte-levgto{background-color:black}",
@@ -11781,9 +11781,9 @@ ${``}`;
   }
 });
 
-// .svelte-kit/output/server/chunks/index-26c2eb41.js
-var index_26c2eb41_exports = {};
-__export(index_26c2eb41_exports, {
+// .svelte-kit/output/server/chunks/index-c9630230.js
+var index_c9630230_exports = {};
+__export(index_c9630230_exports, {
   default: () => Destinations,
   load: () => load2
 });
@@ -11800,10 +11800,10 @@ async function load2({ url, params, fetch: fetch2, session, stuff }) {
   };
 }
 var css$23, Country_card, css$13, Countries_grid, css5, All_countries, Destinations;
-var init_index_26c2eb41 = __esm({
-  ".svelte-kit/output/server/chunks/index-26c2eb41.js"() {
+var init_index_c9630230 = __esm({
+  ".svelte-kit/output/server/chunks/index-c9630230.js"() {
     init_shims();
-    init_app_bfad93cc();
+    init_app_277676da();
     init_ssr();
     css$23 = {
       code: ".card.svelte-17mtdry.svelte-17mtdry{margin:0;padding:0;transition:all 0.5s ease-out}.card.svelte-17mtdry.svelte-17mtdry:hover{transform:scale(0.97)}.image.svelte-17mtdry.svelte-17mtdry{position:relative;border-radius:10px}.image.svelte-17mtdry img.svelte-17mtdry{display:block;width:100%;border-radius:10px 10px 0 0}.data.svelte-17mtdry.svelte-17mtdry{position:relative;padding-bottom:0.5rem;color:white;background-color:rgba(128, 128, 128, 0.4);border-radius:0 0 10px 10px;height:75px;display:flex;justify-content:flex-start;align-items:center}.data.svelte-17mtdry h1.svelte-17mtdry{padding:0 0.5rem;text-align:center;margin:0;font-size:1.5rem;font-weight:400}@media(max-width: 330px){.data.svelte-17mtdry h1.svelte-17mtdry{font-size:1.2rem}}.overlay.svelte-17mtdry.svelte-17mtdry{position:absolute;top:0;left:0;width:100%;height:100%;display:flex;justify-content:center;align-items:center;z-index:5;cursor:pointer;border-radius:10px 10px 0 0;transition:all ease-out 0.5s}.overlay.svelte-17mtdry.svelte-17mtdry:hover{background-color:rgba(128, 128, 128, 0.5)}.flag.svelte-17mtdry.svelte-17mtdry{position:absolute;top:0;right:0;width:20%}.flag.svelte-17mtdry img.svelte-17mtdry{width:100%;display:block}",
@@ -11862,9 +11862,9 @@ ${validate_component(All_countries, "AllCountries").$$render($$result, { countri
   }
 });
 
-// .svelte-kit/output/server/chunks/_country_-_destination_-99de56cf.js
-var country_destination_99de56cf_exports = {};
-__export(country_destination_99de56cf_exports, {
+// .svelte-kit/output/server/chunks/_country_-_destination_-0e66223d.js
+var country_destination_0e66223d_exports = {};
+__export(country_destination_0e66223d_exports, {
   default: () => U5Bcountryu5D_u5Bdestinationu5D,
   load: () => load3
 });
@@ -12143,10 +12143,10 @@ async function load3({ page: page2, fetch: fetch2 }) {
   };
 }
 var defaults, escapeTest, escapeReplace, escapeTestNoEncode, escapeReplaceNoEncode, escapeReplacements, getEscapeReplacement, unescapeTest, caret, nonWordAndColonTest, originIndependentUrl, baseUrls, justDomain, protocol, domain, noopTest, Tokenizer, block, inline, Lexer, Renderer, TextRenderer, Slugger, Parser, css$42, Destination_text, css$32, Map2, css$24, Destination_map, css$14, Site_info, css6, Selected_video, U5Bcountryu5D_u5Bdestinationu5D;
-var init_country_destination_99de56cf = __esm({
-  ".svelte-kit/output/server/chunks/_country_-_destination_-99de56cf.js"() {
+var init_country_destination_0e66223d = __esm({
+  ".svelte-kit/output/server/chunks/_country_-_destination_-0e66223d.js"() {
     init_shims();
-    init_app_bfad93cc();
+    init_app_277676da();
     init_ssr();
     defaults = getDefaults();
     escapeTest = /[&<>"']/;
@@ -13699,9 +13699,9 @@ ${validate_component(Site_info, "SiteInfo").$$render($$result, {
   }
 });
 
-// .svelte-kit/output/server/chunks/_country_-2727c40b.js
-var country_2727c40b_exports = {};
-__export(country_2727c40b_exports, {
+// .svelte-kit/output/server/chunks/_country_-93a885af.js
+var country_93a885af_exports = {};
+__export(country_93a885af_exports, {
   default: () => U5Bcountryu5D,
   load: () => load4
 });
@@ -13720,10 +13720,10 @@ async function load4({ page: page2, fetch: fetch2 }) {
   };
 }
 var css$25, Destination_card, css$15, Destinations_grid, css7, Destinations_per_country, U5Bcountryu5D;
-var init_country_2727c40b = __esm({
-  ".svelte-kit/output/server/chunks/_country_-2727c40b.js"() {
+var init_country_93a885af = __esm({
+  ".svelte-kit/output/server/chunks/_country_-93a885af.js"() {
     init_shims();
-    init_app_bfad93cc();
+    init_app_277676da();
     init_ssr();
     css$25 = {
       code: ".card.svelte-v6r728.svelte-v6r728{margin:0;padding:0;transition:all 0.5s ease-out}.card.svelte-v6r728.svelte-v6r728:hover{transform:scale(0.97)}.image.svelte-v6r728.svelte-v6r728{position:relative;border-radius:10px}.image.svelte-v6r728 img.svelte-v6r728{display:block;width:100%;border-radius:10px 10px 0 0}.text.svelte-v6r728.svelte-v6r728{margin:0;padding:0;color:white;background-color:rgba(128, 128, 128, 0.4);border-radius:0 0 10px 10px}.title.svelte-v6r728.svelte-v6r728{padding-bottom:0.5rem;height:75px;display:flex;justify-content:center;align-items:center;border-bottom:2px solid white}.title.svelte-v6r728 h1.svelte-v6r728{padding:0 0.5rem;text-align:center;margin:0;font-size:1.5rem;font-weight:400}@media(max-width: 330px){.title.svelte-v6r728 h1.svelte-v6r728{font-size:1.2rem}}.subtitle.svelte-v6r728.svelte-v6r728{height:75px;display:flex;justify-content:center;align-items:center}.subtitle.svelte-v6r728 p.svelte-v6r728{text-align:center;padding:0 0.5rem;margin:0;font-weight:300;font-size:1.3rem}@media(max-width: 330px){.subtitle.svelte-v6r728 p.svelte-v6r728{font-size:1rem}}.overlay.svelte-v6r728.svelte-v6r728{position:absolute;top:0;left:0;width:100%;height:100%;display:flex;justify-content:center;align-items:center;z-index:5;cursor:pointer;border-radius:10px 10px 0 0;transition:all ease-out 0.5s}.overlay.svelte-v6r728.svelte-v6r728:hover{background-color:rgba(128, 128, 128, 0.5)}",
@@ -13795,16 +13795,16 @@ ${validate_component(Destinations_per_country, "DestinationsPerCountry").$$rende
   }
 });
 
-// .svelte-kit/output/server/chunks/contact-908b1950.js
-var contact_908b1950_exports = {};
-__export(contact_908b1950_exports, {
+// .svelte-kit/output/server/chunks/contact-4396a03b.js
+var contact_4396a03b_exports = {};
+__export(contact_4396a03b_exports, {
   default: () => Contact
 });
 var css8, Contact;
-var init_contact_908b1950 = __esm({
-  ".svelte-kit/output/server/chunks/contact-908b1950.js"() {
+var init_contact_4396a03b = __esm({
+  ".svelte-kit/output/server/chunks/contact-4396a03b.js"() {
     init_shims();
-    init_app_bfad93cc();
+    init_app_277676da();
     init_ssr();
     css8 = {
       code: ".temp.svelte-3k3ro4{height:90vh;display:flex;justify-content:center;align-items:center}",
@@ -13823,16 +13823,16 @@ var init_contact_908b1950 = __esm({
   }
 });
 
-// .svelte-kit/output/server/chunks/shop-9cbb4ac7.js
-var shop_9cbb4ac7_exports = {};
-__export(shop_9cbb4ac7_exports, {
+// .svelte-kit/output/server/chunks/shop-68f46d67.js
+var shop_68f46d67_exports = {};
+__export(shop_68f46d67_exports, {
   default: () => Shop
 });
 var css9, Shop;
-var init_shop_9cbb4ac7 = __esm({
-  ".svelte-kit/output/server/chunks/shop-9cbb4ac7.js"() {
+var init_shop_68f46d67 = __esm({
+  ".svelte-kit/output/server/chunks/shop-68f46d67.js"() {
     init_shims();
-    init_app_bfad93cc();
+    init_app_277676da();
     init_ssr();
     css9 = {
       code: ".temp.svelte-3k3ro4{height:90vh;display:flex;justify-content:center;align-items:center}",
@@ -13851,7 +13851,7 @@ var init_shop_9cbb4ac7 = __esm({
   }
 });
 
-// .svelte-kit/output/server/chunks/app-bfad93cc.js
+// .svelte-kit/output/server/chunks/app-277676da.js
 function noop3() {
 }
 function assign(tar, src2) {
@@ -14051,8 +14051,8 @@ function render(request, {
   return respond({ ...request, host }, options2, { prerender });
 }
 var identity, is_client, now, raf, tasks, current_component, escaped2, missing_component, on_destroy, css10, Root, base, assets, user_hooks, template, options2, default_settings, d2, empty, manifest, get_hooks, module_lookup, metadata_lookup;
-var init_app_bfad93cc = __esm({
-  ".svelte-kit/output/server/chunks/app-bfad93cc.js"() {
+var init_app_277676da = __esm({
+  ".svelte-kit/output/server/chunks/app-277676da.js"() {
     init_shims();
     init_ssr();
     identity = (x2) => x2;
@@ -14196,16 +14196,16 @@ ${``}`;
       externalFetch: hooks.externalFetch || fetch
     });
     module_lookup = {
-      "src/routes/__layout.svelte": () => Promise.resolve().then(() => (init_layout_bfeeb691(), layout_bfeeb691_exports)),
-      "src/routes/__error.svelte": () => Promise.resolve().then(() => (init_error_2cf22c7e(), error_2cf22c7e_exports)),
-      "src/routes/index.svelte": () => Promise.resolve().then(() => (init_index_90304df6(), index_90304df6_exports)),
-      "src/routes/destinations/index.svelte": () => Promise.resolve().then(() => (init_index_26c2eb41(), index_26c2eb41_exports)),
-      "src/routes/destinations/[country]-[destination].svelte": () => Promise.resolve().then(() => (init_country_destination_99de56cf(), country_destination_99de56cf_exports)),
-      "src/routes/destinations/[country].svelte": () => Promise.resolve().then(() => (init_country_2727c40b(), country_2727c40b_exports)),
-      "src/routes/contact.svelte": () => Promise.resolve().then(() => (init_contact_908b1950(), contact_908b1950_exports)),
-      "src/routes/shop.svelte": () => Promise.resolve().then(() => (init_shop_9cbb4ac7(), shop_9cbb4ac7_exports))
+      "src/routes/__layout.svelte": () => Promise.resolve().then(() => (init_layout_f3326b0e(), layout_f3326b0e_exports)),
+      "src/routes/__error.svelte": () => Promise.resolve().then(() => (init_error_0fab5dbf(), error_0fab5dbf_exports)),
+      "src/routes/index.svelte": () => Promise.resolve().then(() => (init_index_83f80bbb(), index_83f80bbb_exports)),
+      "src/routes/destinations/index.svelte": () => Promise.resolve().then(() => (init_index_c9630230(), index_c9630230_exports)),
+      "src/routes/destinations/[country]-[destination].svelte": () => Promise.resolve().then(() => (init_country_destination_0e66223d(), country_destination_0e66223d_exports)),
+      "src/routes/destinations/[country].svelte": () => Promise.resolve().then(() => (init_country_93a885af(), country_93a885af_exports)),
+      "src/routes/contact.svelte": () => Promise.resolve().then(() => (init_contact_4396a03b(), contact_4396a03b_exports)),
+      "src/routes/shop.svelte": () => Promise.resolve().then(() => (init_shop_68f46d67(), shop_68f46d67_exports))
     };
-    metadata_lookup = { "src/routes/__layout.svelte": { "entry": "pages/__layout.svelte-32250d2a.js", "css": ["assets/pages/__layout.svelte-555533ad.css", "assets/vendor-86f8c920.css"], "js": ["pages/__layout.svelte-32250d2a.js", "chunks/vendor-753aeb83.js"], "styles": [] }, "src/routes/__error.svelte": { "entry": "pages/__error.svelte-86217144.js", "css": ["assets/pages/__error.svelte-41a40c71.css", "assets/vendor-86f8c920.css"], "js": ["pages/__error.svelte-86217144.js", "chunks/vendor-753aeb83.js"], "styles": [] }, "src/routes/index.svelte": { "entry": "pages/index.svelte-4b587848.js", "css": ["assets/pages/index.svelte-abeba07e.css", "assets/vendor-86f8c920.css"], "js": ["pages/index.svelte-4b587848.js", "chunks/vendor-753aeb83.js"], "styles": [] }, "src/routes/destinations/index.svelte": { "entry": "pages/destinations/index.svelte-8a19ce03.js", "css": ["assets/pages/destinations/index.svelte-f3e1bf37.css", "assets/vendor-86f8c920.css"], "js": ["pages/destinations/index.svelte-8a19ce03.js", "chunks/vendor-753aeb83.js"], "styles": [] }, "src/routes/destinations/[country]-[destination].svelte": { "entry": "pages/destinations/_country_-_destination_.svelte-631b0868.js", "css": ["assets/pages/destinations/_country_-_destination_.svelte-4dfad606.css", "assets/vendor-86f8c920.css"], "js": ["pages/destinations/_country_-_destination_.svelte-631b0868.js", "chunks/vendor-753aeb83.js"], "styles": [] }, "src/routes/destinations/[country].svelte": { "entry": "pages/destinations/_country_.svelte-37199027.js", "css": ["assets/pages/destinations/_country_.svelte-5fda5b8b.css", "assets/vendor-86f8c920.css"], "js": ["pages/destinations/_country_.svelte-37199027.js", "chunks/vendor-753aeb83.js"], "styles": [] }, "src/routes/contact.svelte": { "entry": "pages/contact.svelte-c04fb618.js", "css": ["assets/pages/contact.svelte-febf298f.css", "assets/vendor-86f8c920.css"], "js": ["pages/contact.svelte-c04fb618.js", "chunks/vendor-753aeb83.js"], "styles": [] }, "src/routes/shop.svelte": { "entry": "pages/shop.svelte-9e8d67ff.js", "css": ["assets/pages/contact.svelte-febf298f.css", "assets/vendor-86f8c920.css"], "js": ["pages/shop.svelte-9e8d67ff.js", "chunks/vendor-753aeb83.js"], "styles": [] } };
+    metadata_lookup = { "src/routes/__layout.svelte": { "entry": "pages/__layout.svelte-32250d2a.js", "css": ["assets/pages/__layout.svelte-555533ad.css", "assets/vendor-86f8c920.css"], "js": ["pages/__layout.svelte-32250d2a.js", "chunks/vendor-753aeb83.js"], "styles": [] }, "src/routes/__error.svelte": { "entry": "pages/__error.svelte-86217144.js", "css": ["assets/pages/__error.svelte-41a40c71.css", "assets/vendor-86f8c920.css"], "js": ["pages/__error.svelte-86217144.js", "chunks/vendor-753aeb83.js"], "styles": [] }, "src/routes/index.svelte": { "entry": "pages/index.svelte-4b587848.js", "css": ["assets/pages/index.svelte-abeba07e.css", "assets/vendor-86f8c920.css"], "js": ["pages/index.svelte-4b587848.js", "chunks/vendor-753aeb83.js"], "styles": [] }, "src/routes/destinations/index.svelte": { "entry": "pages/destinations/index.svelte-8a19ce03.js", "css": ["assets/pages/destinations/index.svelte-f3e1bf37.css", "assets/vendor-86f8c920.css"], "js": ["pages/destinations/index.svelte-8a19ce03.js", "chunks/vendor-753aeb83.js"], "styles": [] }, "src/routes/destinations/[country]-[destination].svelte": { "entry": "pages/destinations/_country_-_destination_.svelte-631b0868.js", "css": ["assets/pages/destinations/_country_-_destination_.svelte-4dfad606.css", "assets/vendor-86f8c920.css"], "js": ["pages/destinations/_country_-_destination_.svelte-631b0868.js", "chunks/vendor-753aeb83.js"], "styles": [] }, "src/routes/destinations/[country].svelte": { "entry": "pages/destinations/_country_.svelte-37199027.js", "css": ["assets/pages/destinations/_country_.svelte-5fda5b8b.css", "assets/vendor-86f8c920.css"], "js": ["pages/destinations/_country_.svelte-37199027.js", "chunks/vendor-753aeb83.js"], "styles": [] }, "src/routes/contact.svelte": { "entry": "pages/contact.svelte-c04fb618.js", "css": ["assets/pages/shop.svelte-82a4e29a.css", "assets/vendor-86f8c920.css"], "js": ["pages/contact.svelte-c04fb618.js", "chunks/vendor-753aeb83.js"], "styles": [] }, "src/routes/shop.svelte": { "entry": "pages/shop.svelte-9e8d67ff.js", "css": ["assets/pages/shop.svelte-82a4e29a.css", "assets/vendor-86f8c920.css"], "js": ["pages/shop.svelte-9e8d67ff.js", "chunks/vendor-753aeb83.js"], "styles": [] } };
   }
 });
 
@@ -14259,7 +14259,7 @@ function getRawBody(req) {
 // .svelte-kit/output/server/app.js
 init_shims();
 init_ssr();
-init_app_bfad93cc();
+init_app_277676da();
 
 // .svelte-kit/vercel/entry.js
 init();
