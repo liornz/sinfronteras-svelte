@@ -1,0 +1,34 @@
+<script lang="ts">
+	import SvelteMarkdown from 'svelte-markdown';
+	export let source: string;
+</script>
+
+<div class="text">
+	<h3>ABOUT THIS VIDEO</h3>
+  <p>{source}</p>
+</div>
+
+<style lang="scss">
+	.text {
+		flex: 1;
+		border: 1px solid #ccc;
+		box-shadow: 2px 2px 3px 3px #ccc;
+		padding: 1rem;
+		background-color: white;
+		margin: 1rem 0 0 0;
+		min-height: 200px;
+		@media (min-width: 600px) {
+			margin: 0 1rem 0 0;
+		}
+	}
+
+	.text p {
+		line-height: 1.5;
+		font-size: 1.25rem;
+		color: rgba(0, 0, 0, 0.6);
+	}
+
+	.text h3 {
+		color: rgb(128, 128, 128);
+	}
+</style>
