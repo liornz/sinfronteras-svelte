@@ -30,7 +30,7 @@ import { afterUpdate } from 'svelte';
 				notification.set({
 					status: 'success',
 					title: 'Success!',
-					message: data.message + data.details.name || 'Your message was successfully sent.'
+					message: data.message || 'Your message was successfully sent.'
 				});
 			} else {
 				const data = await response.json();
