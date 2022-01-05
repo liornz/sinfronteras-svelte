@@ -3,7 +3,8 @@
 </script>
 
 <svelte:head>
-	<title>Shop Page</title>
+	<title>Travelblog Sinfronteras - Shop Page</title>
+	<meta name="description" content="Shop Page - Sinfronteras Travel Blog" />
 </svelte:head>
 
 <div class="temp">

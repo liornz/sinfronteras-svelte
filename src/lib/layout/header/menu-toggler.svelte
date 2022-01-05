@@ -29,7 +29,7 @@
 
 </script>
 
-<button on:click>
+<button aria-label="toggle menu" on:click>
 	<svg viewBox="0 0 22 22">
 		<!-- top -->
 		<path d={$topD} />

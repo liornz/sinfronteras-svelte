@@ -1,20 +1,13 @@
 <script>
 	export const prerender = true;
+	import Contact from "$lib/contact-page/contact.svelte";
 </script>
 
 <svelte:head>
-	<title>Contact Page</title>
+	<title>Travelblog Sinfronteras - Contact Page</title>
+	<meta name="description" content="Contact Page - Sinfronteras Travel Blog - Contact me!" />
 </svelte:head>
 
-<div class="temp">
-  <h1>Contact Page</h1>
-</div>
+<Contact />
 
-<style>
-  .temp {
-    height: 90vh;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-  }
-</style>
+

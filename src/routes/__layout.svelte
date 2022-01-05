@@ -29,6 +29,7 @@
 	import '../app.scss';
 	import Header from '$lib/layout/header/header.svelte';
 	import Footer from '$lib/layout/footer/footer.svelte';
+	import Notofication from '$lib/layout/notofication.svelte';
 </script>
 
 <Header />
@@ -36,6 +37,7 @@
 	<slot />
 </main>
 <Footer />
+<Notofication />
 
 <style>
 	.main {

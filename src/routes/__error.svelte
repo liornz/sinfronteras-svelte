@@ -1,4 +1,9 @@
 
+<svelte:head>
+	<title>Travelblog Sinfronteras - Error Page</title>
+	<meta name="description" content="Error Page - Sinfronteras Travel Blog - Page not found!" />
+</svelte:head>
+
 <div class="section">
 	<h1 class="title">Something went wrong!</h1>
 	<p class="subtitle">We can't find the page you are looking for. Go back Home</p>

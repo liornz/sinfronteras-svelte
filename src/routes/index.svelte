@@ -5,7 +5,8 @@
 </script>
 
 <svelte:head>
-	<title>Home Page</title>
+		<title>Travelblog Sinfronteras - Home Page</title>
+	<meta name="description" content="Home Page - Sinfronteras Travel Blog" />
 </svelte:head>
 
 	<VideoOpening />

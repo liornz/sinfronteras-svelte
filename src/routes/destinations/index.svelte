@@ -26,7 +26,8 @@
 </script>
 
 <svelte:head>
-	<title>All Countries</title>
+	<title>Travelblog Sinfronteras - All Countries Page</title>
+	<meta name="description" content="All Countries Page - Sinfronteras Travel Blog" />
 </svelte:head>
 
 <AllCountries {countries} />

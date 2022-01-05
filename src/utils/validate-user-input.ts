@@ -1,23 +1,23 @@
 
 export type userInput = {
-  enteredEmail: string;
-  enteredName: string;
-  enteredMessage: string;
+  email: string;
+  name: string;
+  message: string;
 };
 
 const validateUserInput = (userInput: userInput): boolean => {
   let inputIsValid = true;
-  const { enteredEmail, enteredName, enteredMessage } = userInput;
+  const { email, name, message } = userInput;
   const pattern =
     /[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?/;
-  const isValidEmail = pattern.test(enteredEmail);
+  const isValidEmail = pattern.test(email);
 
   if (
     !isValidEmail ||
-    !enteredName ||
-    enteredName.trim() === '' ||
-    !enteredMessage ||
-    enteredMessage.trim() === ''
+    !name ||
+    name.trim() === '' ||
+    !message ||
+    message.trim() === ''
   ) {
     inputIsValid = false;
   }
