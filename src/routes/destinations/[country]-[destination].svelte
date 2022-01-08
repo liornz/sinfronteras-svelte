@@ -40,7 +40,9 @@
 	subtitle={destination.subtitle}
 />
 <SiteInfo
-	google_api={import.meta.env.VITE_GOOGLE_MAPS_API_KEY}
+	google_api={typeof import.meta.env.VITE_GOOGLE_MAPS_API_KEY === 'string'
+		? import.meta.env.VITE_GOOGLE_MAPS_API_KEY
+		: ''}
 	location={destination.location}
 	zoom={destination.zoom}
 	text={destination.content}

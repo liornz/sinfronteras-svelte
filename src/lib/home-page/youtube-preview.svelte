@@ -1,46 +1,23 @@
-<script>
-	import YouTube from 'svelte-youtube';
+<script lang="ts">
 	export let youtubeId = '';
-	const options = {
-		height: '390',
-		width: '640',
-		//  see https://developers.google.com/youtube/player_parameters
-		playerVars: {
-			autoplay: 1
-		}
-	};
-
-	/**
-* @param {{ detail: { target: { playVideo: () => void; }; }; }} event
-*/
-	function onReady(event) {
-		// access to player in all event handlers via event.target
-    event.detail.target.playVideo();
-	}
 </script>
 
-<div class="video">
-	<YouTube videoId={youtubeId} {options} on:ready={onReady} />
+<div class="backdrop" on:click>
+	<div class="video">
+		<iframe
+			title="self presentation video"
+			class="youtube"
+			src={`https://www.youtube.com/embed/${youtubeId}`}
+			allowFullScreen
+		/>
+	</div>
 </div>
-<div class="backdrop" on:click />
 
 <style lang="scss">
-	.video {
-		position: fixed;
-		top: 30vh;
-		left: 25%;
-		height: 51vw;
-		width: 90vw;
-		/* max-width: 640px; */
-		z-index: 1000;
-		@media (min-width: 992px) {
-			top: 22vh;
-			left: 28vw;
-			height: 34vw;
-			width: 60vw;
-		}
-	}
 	.backdrop {
+		display: flex;
+		justify-content: center;
+		align-items: center;
 		position: fixed;
 		top: 0;
 		left: 0;
@@ -48,5 +25,20 @@
 		height: 100vh;
 		background-color: rgba(0, 0, 0, 0.8);
 		z-index: 100;
+	}
+	.video {
+		width: 90vw;
+		max-width: 60rem;
+		margin: auto;
+	}
+
+	.youtube {
+		width: 100%;
+		height: calc(60rem * 9 / 16);
+		border: 1px solid #ccc;
+		box-shadow: 2px 2px 5px 5px #ccc;
+		@media (max-width: 728px) {
+			height: calc(90vw * 9 / 16);
+		}
 	}
 </style>
