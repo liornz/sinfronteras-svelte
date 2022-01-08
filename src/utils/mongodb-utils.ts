@@ -1,9 +1,12 @@
 import { MongoClient, SortDirection } from 'mongodb';
-
-export const connectDatabase = async (): Promise<typeof client> => {
+export const connectDatabase = async (): Promise<MongoClient> => {
   const client = await MongoClient.connect(
-    `mongodb+srv://${process.env.MONGODB_USERNAME}:${process.env.MONGODB_PASSWORD}@${process.env.MONGODB_CLUSTERNAME}.avpr6.mongodb.net/${process.env.MONGODB_DATABASE}?retryWrites=true&w=majority`,
-  );
+		`mongodb+srv://${import.meta.env.VITE_MONGODB_USERNAME}:${
+			import.meta.env.VITE_MONGODB_PASSWORD
+		}@${import.meta.env.VITE_MONGODB_CLUSTERNAME}.avpr6.mongodb.net/${
+			import.meta.env.VITE_MONGODB_DATABASE
+		}?retryWrites=true&w=majority`
+	);
   return client;
 };
 export const insertDucument = async (

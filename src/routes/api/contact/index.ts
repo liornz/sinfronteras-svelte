@@ -2,16 +2,20 @@ import type { userInput } from '../../../utils/validate-user-input';
 import type { RequestHandler } from '@sveltejs/kit';
 import { connectDatabase, insertDucument } from '../../../utils/mongodb-utils';
 import sgMail from '@sendgrid/mail';
+sgMail.setApiKey(
+	typeof import.meta.env.VITE_SENDGRID_API_KEY === 'string'
+		? import.meta.env.VITE_SENDGRID_API_KEY
+		: ''
+);
 import type { MongoClient } from 'mongodb';
 
 export const post: RequestHandler<Record<string, unknown>, userInput> = async ({ body }) => {
-	console.log(body);
 	const { email, name, message } = body;
 
-	return {
-		status: 201,
-		body: { message: 'Message saved!', details: { email, name, message } }
-	};
+	// return {
+	// 	status: 201,
+	// 	body: { message: 'Message saved!', details: { email, name, message } }
+	// };
 
 	const pattern =
 		/[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?/;
