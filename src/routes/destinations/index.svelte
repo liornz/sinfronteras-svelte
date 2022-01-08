@@ -2,7 +2,7 @@
   import type { country } from '../../utils/types';
 
 	/** @type {import('@sveltejs/kit').Load} */
-	export async function load({ url, params, fetch, session, stuff }) {
+	export async function load({ fetch }) {
 		const response = await fetch('/api/countries/allcountriesdata.json');
 		if (response.ok) {
       const data = await response.json();

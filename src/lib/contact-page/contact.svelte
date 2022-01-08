@@ -17,7 +17,6 @@ import { afterUpdate } from 'svelte';
 	});
 	const sendUserMessageToAPI = async (messageData: userInput) => {
 		try {
-			console.log('sending post request')
 			const response = await fetch('/api/contact', {
 				method: 'POST',
 				body: JSON.stringify(messageData),
