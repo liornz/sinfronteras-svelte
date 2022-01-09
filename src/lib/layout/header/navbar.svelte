@@ -5,7 +5,7 @@
 </script>
 
 {#if isMobile}
-	<nav transition:fly={{ y: -200 }}>
+	<nav class="nav" transition:fly={{ y: -200 }}>
 		<Navitems on:close/>
 	</nav>
 {:else}
@@ -13,3 +13,13 @@
 		<Navitems />
 	</nav>
 {/if}
+
+<style>
+	.nav {
+		position: fixed;
+		top: 70;
+		width: 100%;
+		background-color: black;
+		z-index: 100;
+	}
+</style>
