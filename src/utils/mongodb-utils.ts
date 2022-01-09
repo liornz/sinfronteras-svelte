@@ -1,4 +1,4 @@
-import { MongoClient, SortDirection } from 'mongodb';
+import { MongoClient, Sort, Filter } from 'mongodb';
 export const connectDatabase = async (): Promise<MongoClient> => {
   const client = await MongoClient.connect(
 		`mongodb+srv://${import.meta.env.VITE_MONGODB_USERNAME}:${
@@ -22,8 +22,8 @@ export const insertDucument = async (
 export const getAllDocuments = async (
 	client: MongoClient,
 	collection: string,
-	filter: Record<string, unknown>,
-	sort: [string, SortDirection]
+	filter: Filter<{country: string, destination: string}>,
+	sort: Sort,
 ): Promise<typeof documents> => {
 	const db = client.db();
 	const documents = await db.collection(collection).find(filter).sort(sort).toArray();

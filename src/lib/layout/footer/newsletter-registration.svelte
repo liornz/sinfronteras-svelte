@@ -1,5 +1,6 @@
 <script lang="ts">
 	import { afterUpdate } from 'svelte';
+	import notification from '$lib/stores/notification/notification';
 
 	afterUpdate(() => {
 		setTimeout(() => {
@@ -15,19 +16,45 @@
 		if (!isValidEmail) {
 			emailIsValid = false;
 			emailInputElement.value = '';
-			// @ts-ignore
 			throw new Error('Invalid Email Input!');
 		}
 		emailIsValid = true;
 	};
-	const registrationHandler = () => {
+	const registrationHandler = async () => {
 		try {
 			validateEmail(emailInputElement.value);
+		} catch {
+			return
+		}
+		try {
+			notification.set({
+				status: 'pending',
+				title: 'Registering...',
+				message: 'Subscribing to the newsletter...'
+			});
+			const response = await fetch('/api/newsletter/registration', {
+				method: 'POST',
+				body: JSON.stringify({email: emailInputElement.value}),
+				headers: {
+					'Content-Type': 'application/json'
+				}
+			});
+			if (response.ok) {
+				const data = await response.json();
+				notification.set({
+					status: 'success',
+					title: 'Success!',
+					message: data.message || 'You have successfully subscribed to the newsletter!'
+				});
+			}
 			emailInputElement.value = '';
-			// send data to api
 		} catch (error) {
 			emailInputElement.value = '';
-			console.log(error);
+			notification.set({
+				status: 'error',
+				title: 'Error!',
+				message: 'Error subscribing!'
+			})
 		}
 	};
 </script>

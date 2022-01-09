@@ -1,20 +1,20 @@
 <script context="module" lang="ts">
 	import SelectedVideo from '$lib/single-destination-page/selected-video.svelte';
 	import SiteInfo from '$lib/single-destination-page/site-info.svelte';
-	import type { destination } from '../../utils/types';
+	import Comments from '$lib/comments/comments.svelte';
+	import type { country, destination } from '../../utils/types';
 
 	/** @type {import('@sveltejs/kit').Load} */
 	export async function load({ page, fetch }) {
-		const country = page.params.country;
-		const destination = page.params.destination;
-		const response = await fetch(`/api/destination/${country}-${destination}.json`);
+		const countrySlug = page.params.country;
+		const destinationSlug = page.params.destination;
+		const response = await fetch(`/api/destination/${countrySlug}-${destinationSlug}.json`);
 		if (response.ok) {
 			const data = await response.json();
 			const destination = data.destination;
 			return {
 				props: {
 					destination,
-					country
 				}
 			};
 		}
@@ -47,3 +47,4 @@
 	zoom={destination.zoom}
 	text={destination.content}
 />
+<Comments country={destination.countrySlug} destination={destination.slug} />

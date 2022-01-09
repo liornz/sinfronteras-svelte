@@ -36,7 +36,7 @@ export type commentData = {
   _id: string;
   email: string;
   name: string;
-  text: string;
+  message: string;
 };
 
 export type enteredCommentData = {
