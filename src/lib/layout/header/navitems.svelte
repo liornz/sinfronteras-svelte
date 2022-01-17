@@ -1,7 +1,7 @@
 <script>
 	import { page } from '$app/stores';
-  import { createEventDispatcher } from 'svelte';
-  const dispatch = createEventDispatcher();
+	import { createEventDispatcher } from 'svelte';
+	const dispatch = createEventDispatcher();
 </script>
 
 <ul>
@@ -64,14 +64,13 @@
 				font-weight: 700;
 				&:hover .underline {
 					height: 4px;
-					background-color: $color-sinfronteras;
 					width: 100%;
 				}
 				.underline {
 					height: 4px;
 					width: 0%;
 					margin: 0 auto;
-					background-color: transparent;
+					background-color: $color-sinfronteras;
 					transition: width 0.3s ease-out;
 				}
 			}
