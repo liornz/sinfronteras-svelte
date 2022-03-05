@@ -15,6 +15,7 @@ export function getCountryFileNames(locale: string): string[] {
     case 'es-AR':
       return dataESFiles;
     default:
+      return dataENFiles;
   }
 }
 
