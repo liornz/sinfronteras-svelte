@@ -7,32 +7,31 @@ const enContryDataDirectory = path.join(process.cwd(), 'data', 'countries-data',
 const esCountryDataDirectory = path.join(process.cwd(), 'data', 'countries-data', 'es');
 
 export function getCountryFileNames(locale: string): string[] {
-  let dataFiles;
+  const dataENFiles = fs.readdirSync(enContryDataDirectory);
+	const dataESFiles = fs.readdirSync(esCountryDataDirectory);
   switch (locale) {
     case 'en-US':
-      dataFiles = fs.readdirSync(enContryDataDirectory);
-      return dataFiles;
+      return dataENFiles;
     case 'es-AR':
-      dataFiles = fs.readdirSync(esCountryDataDirectory);
-      return dataFiles;
+      return dataESFiles;
     default:
-      dataFiles = fs.readdirSync(enContryDataDirectory);
-      return dataFiles;
   }
 }
 
 export function getCountryFileData(fileIdentifier: string, locale = 'en-US'): typeof countryData {
 	const countrySlug = fileIdentifier.replace(/\.md$/, '');
+  const filePathEN = path.join(enContryDataDirectory, `${countrySlug}.md`);
+  const filePathES = path.join(esCountryDataDirectory, `${countrySlug}.md`);
 	let filePath;
 	switch (locale) {
 		case 'es-US':
-			filePath = path.join(enContryDataDirectory, `${countrySlug}.md`);
+			filePath = filePathEN;
 			break;
 		case 'es-AR':
-			filePath = path.join(esCountryDataDirectory, `${countrySlug}.md`);
+			filePath = filePathES;
 			break;
 		default:
-			filePath = path.join(enContryDataDirectory, `${countrySlug}.md`);
+			filePath = filePathEN;
 	}
 	const fileContent = fs.readFileSync(filePath, 'utf-8');
 	const { data, content } = matter(fileContent);
