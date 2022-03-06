@@ -1,7 +1,0 @@
-{
-	"functions": {
-		"api/countries/allcountriesdata.json.js": {
-			"includeFiles": "data/**"
-		}
-	}
-}

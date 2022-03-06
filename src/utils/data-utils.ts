@@ -23,18 +23,20 @@ export function getCountryFileData(fileIdentifier: string, locale = 'en-US'): ty
 	const countrySlug = fileIdentifier.replace(/\.md$/, '');
   const filePathEN = path.join(enContryDataDirectory, `${countrySlug}.md`);
   const filePathES = path.join(esCountryDataDirectory, `${countrySlug}.md`);
-	let filePath;
+  const fileContentEN = fs.readFileSync(filePathEN, 'utf-8');
+  const fileContentES = fs.readFileSync(filePathES, 'utf-8');
+	let fileContent;
 	switch (locale) {
 		case 'es-US':
-			filePath = filePathEN;
+			fileContent = fileContentEN;
 			break;
 		case 'es-AR':
-			filePath = filePathES;
+			fileContent = fileContentES;
 			break;
 		default:
-			filePath = filePathEN;
+			fileContent = fileContentEN;
 	}
-	const fileContent = fs.readFileSync(filePath, 'utf-8');
+	// const fileContent = fs.readFileSync(filePath, 'utf-8');
 	const { data, content } = matter(fileContent);
 
 	const countryData = {
