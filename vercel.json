@@ -1,6 +1,6 @@
 {
 	"functions": {
-		"src/routes/api/countries/allcountriesdata.json.js": {
+		"countries/allcountriesdata.json.js": {
 			"includeFiles": "data/**"
 		}
 	}
