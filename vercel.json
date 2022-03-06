@@ -1,0 +1,10 @@
+{
+	"functions": {
+		"api/countries/allcountriesdata.json.js": {
+			"includeFiles": "data/**"
+		},
+		"api/destination/[country]-[destination].json.js": {
+			"includeFiles": "data/**"
+		}
+	}
+}
